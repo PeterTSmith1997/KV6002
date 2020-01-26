@@ -1,0 +1,6 @@
+<config>
+   <title>Fake Movies</title>
+   <username>unn_1234</username>
+   <password>password</password>
+   <dbname>sqlite:db/nfc_films_v2.sqlite</dbname>
+</config>
