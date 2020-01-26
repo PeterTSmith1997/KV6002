@@ -1,7 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: peter
- * Date: 26/01/2020
- * Time: 19:19
- */
+function autoloadClasses($className) {
+    $filename = "classes/" . $className . ".php";
+    if (is_readable($filename)) {
+        include $filename;
+    }
+}
+
+spl_autoload_register("autoloadClasses");
+
