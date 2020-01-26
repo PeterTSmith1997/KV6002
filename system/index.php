@@ -8,3 +8,6 @@ function autoloadClasses($className) {
 
 spl_autoload_register("autoloadClasses");
 
+$page = new Loginpge("Login", "Welcome", "login");
+$page->addLogin();
+$page->getPage();
