@@ -1,0 +1,10 @@
+body{
+    margin: 1%;
+}
+div .row > h2{
+    text-align: center;
+}
+
+.row{
+    margin: 1%;
+}
