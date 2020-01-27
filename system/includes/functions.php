@@ -21,3 +21,14 @@ function makeHeader($title){
 
     return $header;
 }
+
+function makelogin(){
+    $login = <<<LOGIN
+
+    <form id="login" action="includes/login.php">
+
+    </form>
+LOGIN;
+
+    return $login;
+}
