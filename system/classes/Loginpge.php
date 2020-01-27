@@ -6,8 +6,8 @@
  * Date: 26/01/2020
  * Time: 20:31
  */
-class Loginpge extends BootstrapWebPage {
-
+class Loginpage extends BootstrapWebPage {
+    
     function __construct($pageTitle, $pageHeading1, $footerText) {
         $this->pageStart = $this->makePageStart($pageTitle);
         $this->header = $this->makeHeader($pageHeading1);
