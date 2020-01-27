@@ -26,5 +26,16 @@ class Loginpage extends BootstrapWebPage {
 LOGIN;
         return $loginForm;
 
-    }
+    }public function getPage() {
+
+		$this->main = $this->makeMain($this->main);
+
+		return 	$this->pageStart.
+				$this->header.
+				
+				$this->main.
+				$this->footer.
+				$this->pageEnd; 
+	}
+
 }
