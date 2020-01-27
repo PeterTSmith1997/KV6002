@@ -4,8 +4,8 @@ require_once 'includes/functions.php';
 echo makeHeader("login");
 
 ?>
-
-<form id="login" action="includes/login.php">
+<h1>Welcome</h1>
+<form id="login" action="includes/login.php" method="get">
     <div class="container">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required>
@@ -17,3 +17,6 @@ echo makeHeader("login");
     </div>
 
 </form>
+<?php
+echo makeFooter();
+?>
