@@ -5,7 +5,6 @@
  * Date: 27/01/2020
  * Time: 19:17
  */
-
 function makeHeader($title){
     $header="<!DOCTYPE html>
 <html lang=\"en\">
@@ -20,15 +19,4 @@ function makeHeader($title){
 <body>";
 
     return $header;
-}
-
-function makelogin(){
-    $login = <<<LOGIN
-
-    <form id="login" action="includes/login.php">
-
-    </form>
-LOGIN;
-
-    return $login;
 }
