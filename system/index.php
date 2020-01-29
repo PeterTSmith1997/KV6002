@@ -12,7 +12,10 @@ echo makeHeader("login");
 
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
-
+		
+		<label for="UserType"><b>User Type </b></label>
+		 <input type="radio" name="UserType" value="su"> service user<br>
+         <input type="radio" name="gender" value="staff"> staff<br>
         <button type="submit">Login</button>
     </div>
 
