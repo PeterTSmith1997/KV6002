@@ -71,17 +71,11 @@ function validate_logon(){
 
     $dbConn = getConnection();
     /** sql to select the password and first name from the database */
-    switch ($input['UserType']){
-        case "su":
-        case 'staff':
-
-        default:
-    }
-    if ($input['UserType'] == "su"){
-        $sql    = "SELECT ID, FirstName, LastName, Password
+    if ($input['UserType'] == "su") {
+        $sql = "SELECT ID, FirstName, LastName, Password
                        From ServiceUsers
                        WHERE EmailAddress = :username";
-        $stmt   = $dbConn->prepare($sql);
+        $stmt = $dbConn->prepare($sql);
         $stmt->execute(array(':username' => $input['username']));
 
         $recordObj = $stmt->fetchObject();
@@ -91,8 +85,33 @@ function validate_logon(){
             /** Use password verify to make sure the password is correct and store data in the session */
             if (password_verify($input['password'], $passwordHash)) {
                 $input['name'] = $recordObj->firstname;
-                $_SESSION['user']     = $input['user'];
-                $_SESSION['fName']    = $input['name'];
+                $_SESSION['user'] = $input['user'];
+                $_SESSION['fName'] = $input['name'];
+                $_SESSION['loggedIn'] = true;
+                $_SESSION['lastTime'] = time(); // Use to check for inactivity
+
+            }
+
+
+        }
+    }
+
+    if ($input['UserType'] == "staff") {
+        $sql = "SELECT ID, FirstName, LastName, Password
+                       From ServiceUsers
+                       WHERE EmailAddress = :username";
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute(array(':username' => $input['username']));
+
+        $recordObj = $stmt->fetchObject();
+        /** If statement to see if a row is returned */
+        if ($recordObj) {
+            $passwordHash = $recordObj->Password;
+            /** Use password verify to make sure the password is correct and store data in the session */
+            if (password_verify($input['password'], $passwordHash)) {
+                $input['name'] = $recordObj->firstname;
+                $_SESSION['user'] = $input['user'];
+                $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['lastTime'] = time(); // Use to check for inactivity
 
@@ -101,15 +120,12 @@ function validate_logon(){
 
         }
 
+    }
+
         /** If the password can not be verified */
         else {
             $errors[] = "unknown user / password";
         }
-    }
-    /** If there is no record returned */
-    else {
-        $errors[] = "unknown user / password";
-    }
     /** Stores the page that they logged in from */
     $input['page'] = $_SERVER['HTTP_REFERER'];
 
