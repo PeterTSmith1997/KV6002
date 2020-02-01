@@ -86,8 +86,8 @@ function validate_logon(){
             $passwordHash = $recordObj->Password;
             /** Use password verify to make sure the password is correct and store data in the session */
             if (password_verify($input['password'], $passwordHash)) {
-                $input['name'] = $recordObj->firstname;
-                $_SESSION['user'] = $input['user'];
+                $input['name'] = $recordObj->FirstName;
+                $_SESSION['user'] = $input['username'];
                 $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['lastTime'] = time(); // Use to check for inactivity
