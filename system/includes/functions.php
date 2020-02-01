@@ -26,6 +26,21 @@ function makeFooter(){
     </body>
     </html>";
 }
+function getConnection() {
+    try {
+        $user = 'unn_w16018262';
+        $password = 'Ps5125!!';
+	$db='';
+        $connection = new PDO("mysql:host=localhost;dbname=$db",
+            "$user", "$password");
+        $connection->setAttribute(PDO::ATTR_ERRMODE,
+            PDO::ERRMODE_EXCEPTION);
+        return $connection;
+    } catch (Exception $e) {
+        /* We should log the error to a file so the developer can look at any logs. However, for now we won't */
+        throw new Exception("Connection error ". $e->getMessage(), 0, $e);
+    }
+}
 
 function validate_logon(){
     /** Create 2 empty arrays to store the input and any errors
