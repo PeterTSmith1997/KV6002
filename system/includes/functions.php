@@ -50,9 +50,9 @@ function validate_logon(){
     $input = array();
     $errors = array();
     /** Request data from a form and check that there is data else assign a null value */
-    $input['username'] = filter_has_var(INPUT_POST, 'username')?$_POST['username'] : null;
-    $input['password'] = filter_has_var(INPUT_POST, 'password')?$_POST['password'] : null;
-    $input['UserType'] = filter_has_var(INPUT_POST, 'UserType')? $_POST['UserType'] : null;
+    $input['username'] = filter_has_var(INPUT_POST, 'username')?$_REQUEST['username'] : null;
+    $input['password'] = filter_has_var(INPUT_POST, 'password')?$_REQUEST['password'] : null;
+    $input['UserType'] = filter_has_var(INPUT_POST, 'UserType')? $_REQUEST['UserType'] : null;
     $errorPassword = false; // stops dipicate error
     /** Trim both inputs, assumes password does not allow spaces at the end */
     $input['username'] = trim($input['username']);
