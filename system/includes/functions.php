@@ -93,6 +93,10 @@ function validate_logon(){
                 $_SESSION['lastTime'] = time(); // Use to check for inactivity
 
             }
+            /** If the password can not be verified */
+            else {
+                $errors[] = "unknown user / password";
+            }
 
 
         }
@@ -118,16 +122,16 @@ function validate_logon(){
                 $_SESSION['lastTime'] = time(); // Use to check for inactivity
 
             }
+            /** If the password can not be verified */
+            else {
+                $errors[] = "unknown user / password";
+            }
+
 
 
         }
 
     }
-
-        /** If the password can not be verified */
-        else {
-            $errors[] = "unknown user / password";
-        }
     /** Stores the page that they logged in from */
     $input['page'] = $_SERVER['HTTP_REFERER'];
 

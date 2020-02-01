@@ -5,16 +5,6 @@ echo makeHeader("login");
 
 ?>
 <h1>Welcome</h1>
-<?php
-/* Checks if there are errors and it is of the expected type of array */
-    if (!empty($errors) && is_array($errors)) {
-        echo "<div class='error'>";
-        /* Loop through the errors and display them on screen */
-        foreach ($errors as $error) {
-            echo "$error \n";
-        }
-    }
-        ?>
 <form id="login" action="includes/loginProcess.php" method="get">
     <div class="container">
         <label for="username"><b>Username</b></label>
@@ -31,5 +21,15 @@ echo makeHeader("login");
 
 </form>
 <?php
+$errors = isset($_SESSION['errors'])? $_SESSION['errors']:null;
+/* Checks if there are errors and it is of the expected type of array */
+    if (!empty($errors) && is_array($errors)) {
+        echo "<div class='error'>";
+        /* Loop through the errors and display them on screen */
+        foreach ($errors as $error) {
+            echo "$error \n";
+        }
+    }
+        ?>
 echo makeFooter();
 ?>
