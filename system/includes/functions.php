@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 /**
  * Created by PhpStorm.
  * User: peter
@@ -28,10 +29,11 @@ function makeFooter(){
 }
 function getConnection() {
     try {
-        $user = 'unn_w16018262';
-        $password = 'Ps5125!!';
-	$db='';
-        $connection = new PDO("mysql:host=localhost;dbname=$db",
+        $user = user;
+        $password = password;
+        $db= dbName;
+        $host = host;
+        $connection = new PDO("mysql:host=$host;dbname=$db",
             "$user", "$password");
         $connection->setAttribute(PDO::ATTR_ERRMODE,
             PDO::ERRMODE_EXCEPTION);
@@ -69,16 +71,24 @@ function validate_logon(){
 
     $dbConn = getConnection();
     /** sql to select the password and first name from the database */
-    $sql    = "select passwordHash, firstname
-            from nbc_users
-            WHERE username = :username";
+    $sql    = "";
+    switch ($input['UserType']){
+        case 'su':
+            $sql    = "SELECT ID, FirstName, LastName, Password
+                       From ServiceUsers
+                       WHERE EmailAddress = :username";
+        case 'staff':
+
+        default:
+    }
+
     $stmt   = $dbConn->prepare($sql);
     $stmt->execute(array(':username' => $input['username']));
 
     $recordObj = $stmt->fetchObject();
     /** If statement to see if a row is returned */
     if ($recordObj) {
-        $passwordHash = $recordObj->passwordHash;
+        $passwordHash = $recordObj->Password;
         /** Use password verify to make sure the password is correct and store data in the session */
         if (password_verify($input['password'], $passwordHash)) {
             $input['name'] = $recordObj->firstname;
