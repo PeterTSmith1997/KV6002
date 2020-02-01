@@ -21,7 +21,7 @@ echo makeHeader("login");
         <input type="text" placeholder="Enter Username" name="username" required>
 
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" name="password" required>
 		
 		<label for="UserType"><b>User Type </b></label>
 		 <input type="radio" name="UserType" value="su"> service user<br>
