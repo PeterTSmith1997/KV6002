@@ -16,13 +16,5 @@ if ($errors) {
 }
 /* Else redirect the user */
 else {
-    $page = $input['page'];
-    /* IF they have come from the login page redirect to the home page */
-    if ($page == "http://unn-w16018262.newnumyspace.co.uk/yr2/Assignment/login.php") {
-        header("Location: http://unn-w16018262.newnumyspace.co.uk/yr2/Assignment/");
-    }
-    /* Redirect the user to the page they came from */
-    else {
-        header("Location: {$_SERVER['HTTP_REFERER']}");
-    }
+    header("Location: https://tp.petersweb.me.uk/system/viewShifts.php");
 }
