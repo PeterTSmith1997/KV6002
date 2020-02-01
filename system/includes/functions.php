@@ -56,19 +56,20 @@ function validate_logon(){
     $errorPassword = false; // stops dipicate error
     $_SESSION['user'] = $input['username'];
     $_SESSION['pass'] = $input['password'];
+    $_SESSION['ut'] = $input['UserType'];
     /** Trim both inputs, assumes password does not allow spaces at the end */
     $input['username'] = trim($input['username']);
     $input['password'] = trim($input['password']);
 
     /** if statement to check that both fields have been completed */
     if ($input['username'] == null ^ $input['password'] == null ){
-        $errors[] = "please  provide a user and password";
+        $errors[] = "please  provide a user and password1";
         $errorPassword = true;
     }
     /** Checks to see if the username or password is empty, either both or each of them
      * and also checks if there is already error from the above if statement*/
     if ((empty($input['username']) ^ empty($input['password'])) && $errorPassword == false){
-        $errors[] = "please  provide a user and password";
+        $errors[] = "please  provide a user and password2";
     }
 
     $dbConn = getConnection();
@@ -90,13 +91,15 @@ function validate_logon(){
                 $_SESSION['user'] = $input['username'];
                 $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
-                $_SESSION['lastTime'] = time(); // Use to check for inactivity
-
+                $_SESSION['lastTime'] = time();
             }
             /** If the password can not be verified */
             else {
-                $errors[] = "unknown user / password";
-            }
+                    $errors[] = "unknown user / password";
+                }
+
+
+
 
 
         }
