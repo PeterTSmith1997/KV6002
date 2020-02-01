@@ -59,7 +59,7 @@ function validate_logon(){
     $input['password'] = trim($input['password']);
 
     /** if statement to check that both fields have been completed */
-    if ($input['username'] == null ^ $input['password'] == null ^ $input['UserType'] == null){
+    if ($input['username'] == null ^ $input['password'] == null ){
         $errors[] = "please  provide a user and password";
         $errorPassword = true;
     }
