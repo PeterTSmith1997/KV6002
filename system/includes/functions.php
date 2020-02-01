@@ -62,13 +62,13 @@ function validate_logon(){
 
     /** if statement to check that both fields have been completed */
     if ($input['username'] == null ^ $input['password'] == null ){
-        $errors[] = "please  provide a user and password";
+        $errors[] = "please  provide a user and password1";
         $errorPassword = true;
     }
     /** Checks to see if the username or password is empty, either both or each of them
      * and also checks if there is already error from the above if statement*/
     if ((empty($input['username']) ^ empty($input['password'])) && $errorPassword == false){
-        $errors[] = "please  provide a user and password";
+        $errors[] = "please  provide a user and password2";
     }
 
     $dbConn = getConnection();
