@@ -30,6 +30,5 @@ $errors = isset($_SESSION['errors'])? $_SESSION['errors']:null;
             echo "$error \n";
         }
     }
-        ?>
 echo makeFooter();
 ?>

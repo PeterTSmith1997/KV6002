@@ -52,7 +52,7 @@ function validate_logon(){
     /** Request data from a form and check that there is data else assign a null value */
     $input['username'] = filter_has_var(INPUT_GET, 'username')?$_REQUEST['username'] : null;
     $input['password'] = filter_has_var(INPUT_GET, 'password')?$_REQUEST['password'] : null;
-    $input['UserType'] = filter_has_var(INPUT_GET, 'UserType')? $_REQUEST['UserType'] : null;
+    $input['UserType'] = isset($_REQUEST{'UserType'})?$_REQUEST{'UserType'} : null;
     $errorPassword = false; // stops dipicate error
     $_SESSION['user'] = $input['username'];
     $_SESSION['pass'] = $input['password'];
@@ -131,6 +131,9 @@ function validate_logon(){
             else {
                 $errors[] = "unknown user / password";
             }
+        }
+        else {
+            $errors[] = "Please select a user type";
         }
 
     /** Stores the page that they logged in from */
