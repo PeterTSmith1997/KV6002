@@ -12,7 +12,7 @@ list($input, $errors) = validate_logon(); // validate login and create two array
 /* IF there are any errors call the errors function and redirect user  to login */
 if ($errors) {
     store_errors($errors);
-    header("Location: login.php");
+    header("Location: https://tp.petersweb.me.uk/system/");
 }
 /* Else redirect the user */
 else {
