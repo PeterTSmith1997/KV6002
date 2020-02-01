@@ -71,33 +71,36 @@ function validate_logon(){
 
     $dbConn = getConnection();
     /** sql to select the password and first name from the database */
-    $sql    = "";
     switch ($input['UserType']){
         case "su":
-            $sql    = "SELECT ID, FirstName, LastName, Password
-                       From ServiceUsers
-                       WHERE EmailAddress = :username";
         case 'staff':
 
         default:
     }
+    if ($input['UserType'] == "su"){
+        $sql    = "SELECT ID, FirstName, LastName, Password
+                       From ServiceUsers
+                       WHERE EmailAddress = :username";
+        $stmt   = $dbConn->prepare($sql);
+        $stmt->execute(array(':username' => $input['username']));
 
-    $stmt   = $dbConn->prepare($sql);
-    $stmt->execute(array(':username' => $input['username']));
+        $recordObj = $stmt->fetchObject();
+        /** If statement to see if a row is returned */
+        if ($recordObj) {
+            $passwordHash = $recordObj->Password;
+            /** Use password verify to make sure the password is correct and store data in the session */
+            if (password_verify($input['password'], $passwordHash)) {
+                $input['name'] = $recordObj->firstname;
+                $_SESSION['user']     = $input['user'];
+                $_SESSION['fName']    = $input['name'];
+                $_SESSION['loggedIn'] = true;
+                $_SESSION['lastTime'] = time(); // Use to check for inactivity
 
-    $recordObj = $stmt->fetchObject();
-    /** If statement to see if a row is returned */
-    if ($recordObj) {
-        $passwordHash = $recordObj->Password;
-        /** Use password verify to make sure the password is correct and store data in the session */
-        if (password_verify($input['password'], $passwordHash)) {
-            $input['name'] = $recordObj->firstname;
-            $_SESSION['user']     = $input['user'];
-            $_SESSION['fName']    = $input['name'];
-            $_SESSION['loggedIn'] = true;
-            $_SESSION['lastTime'] = time(); // Use to check for inactivity
+            }
+
 
         }
+
         /** If the password can not be verified */
         else {
             $errors[] = "unknown user / password";
