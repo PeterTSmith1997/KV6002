@@ -77,9 +77,9 @@ function validate_logon(){
     if ($input['UserType'] == "su") {
         $sql = "SELECT ID, FirstName, LastName, Password
                        From ServiceUsers
-                       WHERE EmailAddress = :username";
+                       WHERE EmailAddress = :email";
         $stmt = $dbConn->prepare($sql);
-        $stmt->execute(array(':username' => $input['username']));
+        $stmt->execute(array(':email' => $input['username']));
 
         $recordObj = $stmt->fetchObject();
         /** If statement to see if a row is returned */
@@ -92,6 +92,9 @@ function validate_logon(){
                 $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['lastTime'] = time();
+            }
+            else {
+                $errors[] = "unknown user / password";
             }
         }
 
@@ -129,7 +132,7 @@ function validate_logon(){
                 $errors[] = "unknown user / password";
             }
         }
-    
+
     /** Stores the page that they logged in from */
     $input['page'] = $_SERVER['HTTP_REFERER'];
 
