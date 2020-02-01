@@ -35,13 +35,14 @@ function validate_logon(){
     /** Request data from a form and check that there is data else assign a null value */
     $input['username'] = filter_has_var(INPUT_POST, 'username')?$_POST['username'] : null;
     $input['password'] = filter_has_var(INPUT_POST, 'password')?$_POST['password'] : null;
+    $input['UserType'] = filter_has_var(INPUT_POST, 'UserType')? $_POST['UserType'] : null;
     $errorPassword = false; // stops dipicate error
     /** Trim both inputs, assumes password does not allow spaces at the end */
     $input['username'] = trim($input['username']);
     $input['password'] = trim($input['password']);
 
     /** if statement to check that both fields have been completed */
-    if ($input['username'] == null ^ $input['password'] == null){
+    if ($input['username'] == null ^ $input['password'] == null ^ $input['UserType'] == null){
         $errors[] = "please  provide a user and password";
         $errorPassword = true;
     }

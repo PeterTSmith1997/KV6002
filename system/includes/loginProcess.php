@@ -1,6 +1,5 @@
 <?php /* This page should not be seen, it is purely for processing  */
 /* Identify where the session data is located */
-ini_set("session.save_path", "/home/unn_w16018262/sessionData");
 /* Starts a new session */
 session_start();
 
