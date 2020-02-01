@@ -129,8 +129,7 @@ function validate_logon(){
                 $errors[] = "unknown user / password";
             }
         }
-
-    }
+    
     /** Stores the page that they logged in from */
     $input['page'] = $_SERVER['HTTP_REFERER'];
 
