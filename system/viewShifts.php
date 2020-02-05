@@ -1,7 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: peter
- * Date: 01/02/2020
- * Time: 18:23
- */
+session_start();
+echo makeHeader('View shifts');
+if ($_SESSION['type'] !== 'su'){
+    echo "<p> not part of system</p>";
+    echo makeFooter();
+
+} else{
+    echo "<div id=\"welcome\"> Welcome". $_SESSION['user']."/div>";
+}

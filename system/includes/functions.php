@@ -54,9 +54,6 @@ function validate_logon(){
     $input['password'] = filter_has_var(INPUT_GET, 'password')?$_REQUEST['password'] : null;
     $input['UserType'] = isset($_REQUEST{'UserType'})?$_REQUEST{'UserType'} : null;
     $errorPassword = false; // stops dipicate error
-    $_SESSION['user'] = $input['username'];
-    $_SESSION['pass'] = $input['password'];
-    $_SESSION['ut'] = $input['UserType'];
     /** Trim both inputs, assumes password does not allow spaces at the end */
     $input['username'] = trim($input['username']);
     $input['password'] = trim($input['password']);
@@ -91,6 +88,7 @@ function validate_logon(){
                 $_SESSION['user'] = $input['username'];
                 $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
+                $_SESSION['type'] = 'su';
                 $_SESSION['lastTime'] = time();
             }
             else {
