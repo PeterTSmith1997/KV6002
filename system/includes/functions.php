@@ -142,3 +142,8 @@ function validate_logon(){
 function store_errors($errors){
     $_SESSION['errors'] = $errors;
 }
+function getShiftsAllocated(){
+    $db = getConnection();
+
+    $sql = "SELECT ";
+}
