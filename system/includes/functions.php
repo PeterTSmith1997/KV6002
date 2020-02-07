@@ -152,7 +152,9 @@ function getShiftsAllocated()
 </tr>
 ";
     $unAllocated = "<p>Your un-allocateted shits</p><table> 
+
         <tr class='table table-hover'>
+
         <td>Start Time</td>
         <td>End Time</td>
         <td>edit</td>
