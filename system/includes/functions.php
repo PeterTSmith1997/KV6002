@@ -155,6 +155,7 @@ function getShiftsAllocated()
         <tr>
         <td>Start Time</td>
         <td>End Time</td>
+        <td>edit</td>
 </tr>
 ";
 

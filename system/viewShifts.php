@@ -10,3 +10,4 @@ if ($_SESSION['type'] !== 'su'){
     echo "<div id=\"welcome\"> Welcome". $_SESSION['name'] . "</div>";
     echo getShiftsAllocated();
 }
+echo makeFooter();
