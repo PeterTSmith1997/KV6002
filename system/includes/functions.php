@@ -84,7 +84,7 @@ function validate_logon(){
             $passwordHash = $recordObj->Password;
             /** Use password verify to make sure the password is correct and store data in the session */
             if (password_verify($input['password'], $passwordHash)) {
-                $input['name'] = $recordObj->FirstName;
+
                 $_SESSION['ID'] = $recordObj->ID;
                 $_SESSION['user'] = $input['username'];
                 $_SESSION['fName'] = $input['name'];
@@ -145,13 +145,13 @@ function store_errors($errors){
 }
 function getShiftsAllocated()
 {
-    $allocated = "<table> 
+    $allocated = "<p>Your allocateted shits</p><table> 
         <tr>
         <td>Start Time</td>
         <td>End Time</td>
 </tr>
 ";
-    $unAllocated = "<table> 
+    $unAllocated = "<p>Your un-allocateted shits</p><table> 
         <tr>
         <td>Start Time</td>
         <td>End Time</td>
@@ -165,14 +165,21 @@ function getShiftsAllocated()
             FROM `shifts` WHERE ServiceU =:ServiceU";
     $stmt = $db->prepare($sql);
     $stmt->execute(array(':ServiceU' => $_SESSION['ID']));
-    $recordObj = $stmt->fetchObject();
+    while ($recordObj = $stmt->fetchObject()){
      if ($recordObj) {
-        if ($recordObj->Staff == null) {
+         if ($recordObj->Staff == null) {
+             $unAllocated .= "<tr>
+            <td>  $recordObj->StartTime</td>
+            <td>$recordObj->EndTime</td>
+            </tr>";
+
+
 
         } else {
 
-        }
+         }
+     }
     }
-    $tables = $allocated . "</tabe>". $unAllocated . "</tabbe";
+    $tables = $allocated . "</table>". $unAllocated . "</table";
     return $tables;
 }
