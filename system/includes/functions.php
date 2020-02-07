@@ -151,9 +151,15 @@ function getShiftsAllocated()
         <td scope='col'>End Time</td>
 </tr>
 ";
+<<<<<<< HEAD
     $unAllocated = "<p>Your un-allocateted shits</p><table class='table table-hover'> 
 
         <tr>
+=======
+    $unAllocated = "<p>Your un-allocateted shits</p><table> 
+
+        <tr class='table table-hover'>
+>>>>>>> master
 
         <td>Start Time</td>
         <td>End Time</td>
