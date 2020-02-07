@@ -146,13 +146,13 @@ function store_errors($errors){
 function getShiftsAllocated()
 {
     $allocated = "<p>Your allocateted shits</p><table> 
-        <tr>
-        <td>Start Time</td>
-        <td>End Time</td>
+        <tr class='table table-hover'>
+        <td scope='col'>Start Time</td>
+        <td scope='col'>End Time</td>
 </tr>
 ";
     $unAllocated = "<p>Your un-allocateted shits</p><table> 
-        <tr>
+        <tr class='table'>
         <td>Start Time</td>
         <td>End Time</td>
         <td>edit</td>
@@ -169,7 +169,7 @@ function getShiftsAllocated()
      if ($recordObj) {
          if ($recordObj->Staff == null) {
              $unAllocated .= "<tr>
-            <td>  $recordObj->StartTime</td>
+            <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             </tr>";
 
@@ -182,4 +182,10 @@ function getShiftsAllocated()
     }
     $tables = $allocated . "</table>". $unAllocated . "</table";
     return $tables;
+}
+function sendEmail($startTime, $date, $endTime){
+
+}
+function addShift(){
+
 }
