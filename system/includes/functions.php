@@ -145,14 +145,16 @@ function store_errors($errors){
 }
 function getShiftsAllocated()
 {
-    $allocated = "<p>Your allocateted shits</p><table> 
-        <tr class='table table-hover'>
+    $allocated = "<p>Your allocateted shits</p><table class='table table-hover'> 
+        <tr>
         <td scope='col'>Start Time</td>
         <td scope='col'>End Time</td>
 </tr>
 ";
-    $unAllocated = "<p>Your un-allocateted shits</p><table> 
-        <tr class='table table-hover'>
+    $unAllocated = "<p>Your un-allocateted shits</p><table class='table table-hover'> 
+
+        <tr>
+
         <td>Start Time</td>
         <td>End Time</td>
         <td>edit</td>
