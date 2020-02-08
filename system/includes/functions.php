@@ -174,8 +174,8 @@ function getShiftsAllocated()
              $unAllocated .= "<tr>
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
-            <td>$recordObj->SartDate</td>
-            <td><a href='edit.php?id='>edit</a> </td>
+            <td>$recordObj->StartDate</td>
+            <td><a href='editShift.php?id=$id'>edit</a> </td>
             </tr>";
 
 
