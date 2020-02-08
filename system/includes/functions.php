@@ -166,7 +166,8 @@ function getShiftsAllocated()
 
     $db = getConnection();
 
-    $sql = "SELECT shifts.id as shift, ServiceU, Staff, StartDate, EndDate, StartTime, EndTime FROM `shifts` LEFT JOIN Staff ON (shifts.Staff = Staff.ID) WHERE ServiceU =:ServiceU";
+    $sql = "SELECT shifts.id as shift, ServiceU, Staff, StartDate, EndDate,
+            StartTime, EndTime, FirstName, LastName  FROM `shifts` LEFT JOIN Staff ON (shifts.Staff = Staff.ID) WHERE ServiceU =:ServiceU";
     $stmt = $db->prepare($sql);
     $stmt->execute(array(':ServiceU' => $_SESSION['ID']));
     while ($recordObj = $stmt->fetchObject()){
@@ -183,11 +184,12 @@ function getShiftsAllocated()
 
 
         } else {
+            $staff = $recordObj-> FirstName . " " . $recordObj->LastName;
              $allocated .= "<tr>
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
-            <td>$recordObj->Staff</td>
+            <td>$staff</td>
             </tr>
            ";
          }
