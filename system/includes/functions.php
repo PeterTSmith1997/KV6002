@@ -87,7 +87,7 @@ function validate_logon(){
 
                 $_SESSION['ID'] = $recordObj->ID;
                 $_SESSION['user'] = $input['username'];
-                $_SESSION['fName'] = $input['name'];
+                $_SESSION['fName'] = $recordObj->FristName;
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['type'] = 'su';
                 $_SESSION['lastTime'] = time();
@@ -149,16 +149,18 @@ function getShiftsAllocated()
         <tr>
         <td scope='col'>Start Time</td>
         <td scope='col'>End Time</td>
+        <td scope='col'>Date</td>
+        <td scope='col'>staff</td>
 </tr>
 ";
     $unAllocated = "<p>Your un-allocateted shits</p><table class='table table-hover'> 
 
         <tr>
 
-        <td>Start Time</td>
-        <td>End Time</td>
-        <td>Date</td>
-        <td>edit</td>
+        <td scope='col'>Start Time</td>
+        <td scope='col'>End Time</td>
+        <td scope='col'>Date</td>
+        <td scope='col'>edit</td>
 </tr>
 ";
 
@@ -181,7 +183,13 @@ function getShiftsAllocated()
 
 
         } else {
-
+             $allocated .= "<tr>
+            <td scope='row'>  $recordObj->StartTime</td>
+            <td>$recordObj->EndTime</td>
+            <td>$recordObj->StartDate</td>
+            <td>$recordObj->staff</td>
+            </tr>
+           ";
          }
      }
     }
