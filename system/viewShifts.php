@@ -11,5 +11,7 @@ if ($_SESSION['type'] !== 'su'){
  <div  class='col-md3 offset-md-3' id='welcome'> Welcome". $_SESSION['fName'] ."</div>
 </div>";
     echo getShiftsAllocated();
+    echo makeBookingForm();
 }
+
 echo makeFooter();

@@ -204,3 +204,31 @@ function sendEmail($startTime, $date, $endTime){
 function addShift(){
 
 }
+
+function makeBookingForm(){
+    $form = <<<FORM
+    
+<form action="#">
+    <div class="container">
+        <label for="Start">Start</label>
+        <input type="time" id="Start" name="Start">
+        <label for="end">end</label>
+        <input type="time" id="end" name="end">
+        <label for="Start Date">Date</label>
+        <input type="date" name="Start Date" id="Start Date">
+        <label for="gender">Prefurred gender</label>
+        <fieldset id="gender">
+            <input type="radio" name="gender" value="M"> Male<br>
+            <input type="radio" name="gender" value="F"> Female<br>
+            <input type="radio" name="gender" value="DM"> Dont mind<br>
+        </fieldset>
+        <label for="Notes">Any Other info</label>
+        <textarea id="Notes"></textarea>
+    </div>
+
+</form>
+
+FORM;
+
+    return $form;
+}
