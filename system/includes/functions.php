@@ -157,14 +157,14 @@ function getShiftsAllocated()
 
         <td>Start Time</td>
         <td>End Time</td>
+        <td>Date</td>
         <td>edit</td>
 </tr>
 ";
 
     $db = getConnection();
 
-    $sql = "SELECT id, ServiceU, Staff, StartDate, EndDate, StartTime, EndTime 
-            FROM `shifts` WHERE ServiceU =:ServiceU";
+    $sql = "SELECT shifts.id, ServiceU, Staff, StartDate, EndDate, StartTime, EndTime FROM `shifts` LEFT JOIN Staff ON (shifts.Staff = Staff.ID) WHERE ServiceU =:ServiceU";
     $stmt = $db->prepare($sql);
     $stmt->execute(array(':ServiceU' => $_SESSION['ID']));
     while ($recordObj = $stmt->fetchObject()){
@@ -173,6 +173,8 @@ function getShiftsAllocated()
              $unAllocated .= "<tr>
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
+            <td>$recordObj->SartDate</td>
+            <td><a href='edit.php?id=$recordObj->shifts.id'>edit</a> </td>
             </tr>";
 
 
