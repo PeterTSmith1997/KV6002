@@ -187,7 +187,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
-            <td>$recordObj->staff</td>
+            <td>$recordObj->Staff</td>
             </tr>
            ";
          }
