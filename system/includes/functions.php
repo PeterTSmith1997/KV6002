@@ -201,8 +201,14 @@ function getShiftsAllocated()
 function sendEmail($startTime, $date, $endTime){
 
 }
-function addShift(){
+function modifyShift(){
+    $input['id'] = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
 
+    if ($input == null){
+        //add
+    } else{
+        //update
+    }
 }
 
 function makeBookingForm(){
