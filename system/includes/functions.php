@@ -240,7 +240,7 @@ function modifyShift(){
 function makeBookingForm(){
     $form = <<<FORM
     
-<form action="bookingProcess.php" method="get">
+<form action="includes/bookingProcess.php" method="get">
     <div class="container">
         <label for="Start">Start</label>
         <input type="time" id="Start" name="Start">
