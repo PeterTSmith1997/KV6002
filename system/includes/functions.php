@@ -256,6 +256,7 @@ function makeBookingForm(){
         </fieldset>
         <label for="Notes">Any Other info</label>
         <textarea id="Notes"></textarea>
+                <button type="submit">Login</button>
     </div>
 
 </form>
