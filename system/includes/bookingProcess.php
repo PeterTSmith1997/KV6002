@@ -8,8 +8,7 @@ require_once 'functions.php';
 
 unset($_SESSION['errors']);  // clear errors
 $id = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
-list($input, $errors) = modifyShift(); // validate login and create two arrays
-/* IF there are any errors call the errors function and redirect user  to login */
+list($input, $errors) = modifyShift(); 
 if ($id != null ) {
     store_errors($errors);
     header("Location: https://tp.petersweb.me.uk/system/");
