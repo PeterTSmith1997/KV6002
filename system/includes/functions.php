@@ -205,12 +205,12 @@ function modifyShift(){
     $db = getConnection();
     $input = array();
     $errors = array();
-    $input['id'] = filter_has_var(INPUT_REQUEST, 'id')?$_REQUEST['id'] : null;
-    $input['date'] = filter_has_var(INPUT_REQUEST, 'Start Date')?$_REQUEST : null;
-    $input['Start'] = filter_has_var(INPUT_REQUEST, 'Start')?$_REQUEST : null;
-    $input['End'] = filter_has_var(INPUT_REQUEST, 'End')?$_REQUEST : null;
-    $input['Notes'] = filter_has_var(INPUT_REQUEST, 'Notes')?$_REQUEST : null;
-    $input['gender'] = filter_has_var(INPUT_REQUEST, 'gender')?$_REQUEST : null;
+    $input['id'] = filter_has_var(INPUT_GET, 'id')?$_REQUEST['id'] : null;
+    $input['date'] = filter_has_var(INPUT_GET, 'Start Date')?$_REQUEST : null;
+    $input['Start'] = filter_has_var(INPUT_GET, 'Start')?$_REQUEST : null;
+    $input['End'] = filter_has_var(INPUT_GET, 'End')?$_REQUEST : null;
+    $input['Notes'] = filter_has_var(INPUT_GET, 'Notes')?$_REQUEST : null;
+    $input['gender'] = filter_has_var(INPUT_GET, 'gender')?$_REQUEST : null;
 
     /** Loop thought all inputs and trim them*/
     foreach ($input as $key=>$item) {
