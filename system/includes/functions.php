@@ -202,36 +202,35 @@ function sendEmail($startTime, $date, $endTime){
 
 }
 function modifyShift(){
-    $db = getConnection();
+
     $input = array();
     $errors = array();
-    $input['id'] = filter_has_var(INPUT_GET, 'id')?$_REQUEST['id'] : null;
-    $input['date'] = filter_has_var(INPUT_GET, 'Start Date')?$_REQUEST : null;
-    $input['Start'] = filter_has_var(INPUT_GET, 'Start')?$_REQUEST : null;
-    $input['End'] = filter_has_var(INPUT_GET, 'End')?$_REQUEST : null;
-    $input['Notes'] = filter_has_var(INPUT_GET, 'Notes')?$_REQUEST : null;
-    $input['gender'] = filter_has_var(INPUT_GET, 'gender')?$_REQUEST : null;
+    try {
+        $db = getConnection();
+        $input['id'] = filter_has_var(INPUT_GET, 'id') ? $_REQUEST['id'] : null;
+        $input['date'] = filter_has_var(INPUT_GET, 'Start Date') ? $_REQUEST : null;
+        $input['Start'] = filter_has_var(INPUT_GET, 'Start') ? $_REQUEST : null;
+        $input['End'] = filter_has_var(INPUT_GET, 'End') ? $_REQUEST : null;
+        $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST : null;
+        $input['gender'] = filter_has_var(INPUT_GET, 'gender') ? $_REQUEST : null;
 
-    /** Loop thought all inputs and trim them*/
-    foreach ($input as $key=>$item) {
-        if (!empty($input[$key])) {
-            $input[$key] = trim($item);
+
+        if ($input['id'] == null) {
+            $sql = "INSERT INTO `shifts`(`ServiceU`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES :ServiceU, :StartDate,
+          :EndDate, :StartTime, :EndTime, :Preferredgender";
+            $stmt = $db->prepare($sql);
+            if (!empty($input)) {
+                $result = $stmt->execute(array(':ServiceU' => $_SESSION['ID'], ':StartDate' => $input['date'],
+                    ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
+                    ':Preferredgender' => $input['gender']));
+            }
+        } else {
+            //update
         }
+
     }
-
-
-
-    if ($input['id'] == null){
-        $sql = "INSERT INTO `shifts`(`ServiceU`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES :ServiceU, :StartDate,
-          :EndDate, :StartTime, :EndTime, :Preferred gender";
-        $stmt = $db->prepare($sql);
-        if (!empty($input)) {
-            $result = $stmt->execute(array(':ServiceU'=>$_SESSION['ID'], ':StartDate'=>$input['date'],
-                ':endDate'=>$input['date'], ':StartTime'=>$input['Start'], ':EndTime'=>$input['End'],
-                ':Preferred gender'=>$input['gender']));
-        }
-    } else{
-        //update
+    catch (Exception $e){
+        echo $e->getMessage();
     }
 
     return array($input, $errors);
