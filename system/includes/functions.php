@@ -202,27 +202,53 @@ function sendEmail($startTime, $date, $endTime){
 
 }
 function modifyShift(){
-    $input['id'] = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
+    $db = getConnection();
+    $input = array();
+    $errors = array();
+    $input['id'] = filter_has_var(INPUT_REQUEST, 'id')?$_REQUEST['id'] : null;
+    $input['date'] = filter_has_var(INPUT_REQUEST, 'Start Date')?$_REQUEST : null;
+    $input['Start'] = filter_has_var(INPUT_REQUEST, 'Start')?$_REQUEST : null;
+    $input['End'] = filter_has_var(INPUT_REQUEST, 'End')?$_REQUEST : null;
+    $input['Notes'] = filter_has_var(INPUT_REQUEST, 'Notes')?$_REQUEST : null;
+    $input['gender'] = filter_has_var(INPUT_REQUEST, 'gender')?$_REQUEST : null;
 
-    if ($input == null){
-        //add
+    /** Loop thought all inputs and trim them*/
+    foreach ($input as $key=>$item) {
+        if (!empty($input[$key])) {
+            $input[$key] = trim($item);
+        }
+    }
+
+
+
+    if ($input['id'] == null){
+        $sql = "INSERT INTO `shifts`(`ServiceU`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES :ServiceU, :StartDate,
+          :EndDate, :StartTime, :EndTime, :Preferred gender";
+        $stmt = $db->prepare($sql);
+        if (!empty($input)) {
+            $result = $stmt->execute(array(':ServiceU'=>$_SESSION['ID'], ':StartDate'=>$input['date'],
+                ':endDate'=>$input['date'], ':StartTime'=>$input['Start'], ':EndTime'=>$input['End'],
+                ':Preferred gender'=>$input['gender']));
+        }
     } else{
         //update
     }
+
+    return array($input, $errors);
 }
 
 function makeBookingForm(){
     $form = <<<FORM
     
-<form action="#">
+<form action="bookingProcess.php" method="get">
     <div class="container">
         <label for="Start">Start</label>
         <input type="time" id="Start" name="Start">
         <label for="end">end</label>
-        <input type="time" id="end" name="end">
+        <input type="time" id="End" name="end">
         <label for="Start Date">Date</label>
         <input type="date" name="Start Date" id="Start Date">
-        <label for="gender">Prefurred gender</label>
+        <label for="gender">Preferred gender</label>
         <fieldset id="gender">
             <input type="radio" name="gender" value="M"> Male<br>
             <input type="radio" name="gender" value="F"> Female<br>
