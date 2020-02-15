@@ -224,11 +224,15 @@ function modifyShift(){
             $input['id'] = 1;
             $sql = "INSERT INTO `shifts`('ID','ServiceU', 'staff' 'StartDate', 'EndDate', 'StartTime', 'EndTime', 'Preferred gender') VALUES :id, :ServiceU, :staff, :StartDate,
           :EndDate, :StartTime, :EndTime, :Preferredgender";
+		$sql = "INSERT INTO `shifts` (`id`, `ServiceU`, `Staff`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES 
+		(\'1\', \'1\', \'10\', \'2020-02-13\', \'2020-02-13\', \'2\', \'5\', \'m\')";
+
             $stmt = $db->prepare($sql);
+		$stmt->execute()
             if (!empty($input)) {
-                $result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':staff'=>$input['staff'], ':StartDate' => $input['date'],
-                    ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
-                    ':Preferredgender' => $input['gender']));
+                //$result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':staff'=>$input['staff'], ':StartDate' => $input['date'],
+                  //  ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
+                    //':Preferredgender' => $input['gender']));
 
 
             }
