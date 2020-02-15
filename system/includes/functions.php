@@ -89,6 +89,7 @@ function validate_logon(){
                 $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['lastTime'] = time();
+                $_SESSION['email'] = $input['username'];
 
             }
             else {
@@ -199,6 +200,7 @@ function getShiftsAllocated()
 }
 function sendEmail($startTime, $date, $endTime){
 
+    imap_mail($_SESSION['email'],"your shift", 'test');
 }
 function modifyShift(){
 
@@ -212,7 +214,7 @@ function modifyShift(){
         $input['End'] = filter_has_var(INPUT_GET, 'end') ? $_REQUEST['end'] : null;
         $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = $_REQUEST['gender'];
-        $input['staff'] = 10;
+        $input['staff'] = null;
 
         var_dump($input);
         var_dump($_SESSION);
@@ -235,7 +237,8 @@ function modifyShift(){
 					       ':StartTime'=>$input['Start'], 
 					       ':EndTime'=>$input['End'],
 					       ':Preferredgender'=>$input['gender']));
-					 
+            sendEmail($input['Start'], $input['date'],$input['End']);
+
         } else {
             //update
         }
