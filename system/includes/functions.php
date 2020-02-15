@@ -84,13 +84,12 @@ function validate_logon(){
             $passwordHash = $recordObj->Password;
             /** Use password verify to make sure the password is correct and store data in the session */
             if (password_verify($input['password'], $passwordHash)) {
-
-                $_SESSION['ID'] = $recordObj->ID;
+                $input['name'] = $recordObj->FirstName;
                 $_SESSION['user'] = $input['username'];
-                $_SESSION['fName'] = $recordObj->FristName;
+                $_SESSION['fName'] = $input['name'];
                 $_SESSION['loggedIn'] = true;
-                $_SESSION['type'] = 'su';
                 $_SESSION['lastTime'] = time();
+
             }
             else {
                 $errors[] = "unknown user / password";
@@ -216,17 +215,18 @@ function modifyShift(){
         var_dump($input);
         var_dump($_SESSION);
 
-        
+
 
 
         if ($input['id'] == null) {
             $sql = "INSERT INTO `shifts`(`ServiceU`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES :ServiceU, :StartDate,
-          :EndDate, :StartTime, :EndTime, :Preferredgender";
+          :EndDate, :StartTime, :EndTime";
             $stmt = $db->prepare($sql);
             if (!empty($input)) {
                 $result = $stmt->execute(array(':ServiceU' => $_SESSION['ID'], ':StartDate' => $input['date'],
-                    ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
-                    ':Preferredgender' => $input['gender']));
+                    ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End']));
+                echo  $sql;
+
             }
         } else {
             //update
