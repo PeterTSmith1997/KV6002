@@ -119,10 +119,12 @@ function validate_logon(){
                 /** Use password verify to make sure the password is correct and store data in the session */
                 if (password_verify($input['password'], $passwordHash)) {
                     $input['name'] = $recordObj->FirstName;
+                    $input['id'] = $recordObj->ID;
                     $_SESSION['user'] = $input['username'];
                     $_SESSION['fName'] = $input['name'];
                     $_SESSION['loggedIn'] = true;
                     $_SESSION['lastTime'] = time();
+                    $_SESSION['ID'] = $input['id'];
                 }
             }
 
