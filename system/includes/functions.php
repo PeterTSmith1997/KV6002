@@ -229,7 +229,7 @@ function modifyShift(){
 		
                 $result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':staff'=>$input['staff'], ':StartDate' => $input['date'],
                   ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
-                   ':Preferredgender' => $input['gender']);
+                   ':Preferredgender' => $input['gender']));
 					 
         } else {
             //update
