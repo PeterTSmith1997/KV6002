@@ -212,7 +212,7 @@ function modifyShift(){
         $input['End'] = filter_has_var(INPUT_GET, 'end') ? $_REQUEST['end'] : null;
         $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = $_REQUEST['gender'];
-        $input['staff'] = null;
+        $input['staff'] = 10;
 
         var_dump($input);
         var_dump($_SESSION);
