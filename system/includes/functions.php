@@ -212,6 +212,7 @@ function modifyShift(){
         $input['End'] = filter_has_var(INPUT_GET, 'end') ? $_REQUEST['end'] : null;
         $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = $_REQUEST['gender'];
+        $input['id'] = 1;
         var_dump($input);
         var_dump($_SESSION);
 
@@ -219,11 +220,11 @@ function modifyShift(){
 
 
         if ($input['id'] == null) {
-            $sql = "INSERT INTO `shifts`(`ServiceU`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES :ServiceU, :StartDate,
+            $sql = "INSERT INTO `shifts`('ID','ServiceU', 'StartDate', 'EndDate', 'StartTime', 'EndTime', 'Preferred gender') VALUES :id, :ServiceU, :StartDate,
           :EndDate, :StartTime, :EndTime, :Preferredgender";
             $stmt = $db->prepare($sql);
             if (!empty($input)) {
-                $result = $stmt->execute(array(':ServiceU' => $_SESSION['ID'], ':StartDate' => $input['date'],
+                $result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':StartDate' => $input['date'],
                     ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
                     ':Preferredgender' => $input['gender']));
                 echo  $sql;
