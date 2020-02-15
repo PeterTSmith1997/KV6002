@@ -207,7 +207,7 @@ function modifyShift(){
     try {
         $db = getConnection();
         $input['id'] = filter_has_var(INPUT_GET, 'id') ? $_REQUEST['id'] : null;
-        $input['date'] = filter_has_var(INPUT_GET, 'Start Date') ? $_REQUEST : null;
+        $input['date'] = filter_has_var(INPUT_GET, 'StartDate') ? $_REQUEST : null;
         $input['Start'] = filter_has_var(INPUT_GET, 'Start') ? $_REQUEST : null;
         $input['End'] = filter_has_var(INPUT_GET, 'End') ? $_REQUEST : null;
         $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST : null;
@@ -220,11 +220,12 @@ function modifyShift(){
 
         if ($input['id'] == null) {
             $sql = "INSERT INTO `shifts`(`ServiceU`, `StartDate`, `EndDate`, `StartTime`, `EndTime`, `Preferred gender`) VALUES :ServiceU, :StartDate,
-          :EndDate, :StartTime, :EndTime";
+          :EndDate, :StartTime, :EndTime, :Preferredgender";
             $stmt = $db->prepare($sql);
             if (!empty($input)) {
                 $result = $stmt->execute(array(':ServiceU' => $_SESSION['ID'], ':StartDate' => $input['date'],
-                    ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End']));
+                    ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
+                    ':Preferredgender' => $input['gender']));
                 echo  $sql;
 
             }
@@ -249,8 +250,8 @@ function makeBookingForm(){
             <input type="time" id="Start" name="Start">
             <label for="end">end</label>
             <input type="time" id="End" name="end">
-            <label for="Start Date">Date</label>
-            <input type="date" name="Start Date" id="Start Date">
+            <label for="StartDate">Date</label>
+            <input type="date" name="StartDate" id="StartDate">
             <label for="gender">Preferred gender</label>
             <fieldset id="gender">
                 <input type="radio" name="gender" value="M"> Male<br>
@@ -258,7 +259,7 @@ function makeBookingForm(){
                 <input type="radio" name="gender" value="DM"> Dont mind<br>
             </fieldset>
             <label for="Notes">Any Other info</label>
-            <textarea id="Notes"></textarea>
+            <textarea id="Notes" name="notes"></textarea>
             <input type="submit" value="Submit">
 
 
