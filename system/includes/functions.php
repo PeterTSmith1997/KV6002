@@ -237,7 +237,7 @@ function modifyShift(){
 
     }
     catch (Exception $e){
-        echo $e->getMessage();
+        echo $e->getTrace();
     }
 
     return array($input, $errors);
@@ -266,6 +266,7 @@ function makeBookingForm(){
 
 
         </form>
+	
     </div>
 FORM;
 
