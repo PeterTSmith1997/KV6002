@@ -213,6 +213,7 @@ function modifyShift(){
         $input['End'] = filter_has_var(INPUT_GET, 'End') ? $_REQUEST : null;
         $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST : null;
         $input['gender'] = $_REQUEST['gender'];
+        var_dump($input);
 
 
         if ($input['id'] == null) {
