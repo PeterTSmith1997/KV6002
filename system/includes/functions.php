@@ -221,11 +221,11 @@ function modifyShift(){
 
         if ($input['id'] == null) {
             $input['id'] = 1;
-            $sql = "INSERT INTO `shifts`('ID','ServiceU', 'StartDate', 'EndDate', 'StartTime', 'EndTime', 'Preferred gender') VALUES :id, :ServiceU, :StartDate,
+            $sql = "INSERT INTO `shifts`('ID','ServiceU', 'staff' 'StartDate', 'EndDate', 'StartTime', 'EndTime', 'Preferred gender') VALUES :id, :ServiceU, :staff, :StartDate,
           :EndDate, :StartTime, :EndTime, :Preferredgender";
             $stmt = $db->prepare($sql);
             if (!empty($input)) {
-                $result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':StartDate' => $input['date'],
+                $result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':staff'=>null, ':StartDate' => $input['date'],
                     ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
                     ':Preferredgender' => $input['gender']));
 
