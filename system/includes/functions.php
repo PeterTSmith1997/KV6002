@@ -228,7 +228,7 @@ function modifyShift(){
 		(\'1\', \'1\', \'10\', \'2020-02-13\', \'2020-02-13\', \'2\', \'5\', \'m\')";
 
             $stmt = $db->prepare($sql);
-		$stmt->execute()
+		$stmt->execute();
             if (!empty($input)) {
                 //$result = $stmt->execute(array(':id'=>$input['id'],':ServiceU' => $_SESSION['ID'], ':staff'=>$input['staff'], ':StartDate' => $input['date'],
                   //  ':endDate' => $input['date'], ':StartTime' => $input['Start'], ':EndTime' => $input['End'],
