@@ -207,10 +207,10 @@ function modifyShift(){
     try {
         $db = getConnection();
         $input['id'] = filter_has_var(INPUT_GET, 'id') ? $_REQUEST['id'] : null;
-        $input['date'] = filter_has_var(INPUT_GET, 'StartDate') ? $_REQUEST : null;
-        $input['Start'] = filter_has_var(INPUT_GET, 'Start') ? $_REQUEST : null;
-        $input['End'] = filter_has_var(INPUT_GET, 'End') ? $_REQUEST : null;
-        $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST : null;
+        $input['date'] = filter_has_var(INPUT_GET, 'StartDate') ? $_REQUEST['startdate'] : null;
+        $input['Start'] = filter_has_var(INPUT_GET, 'Start') ? $_REQUEST['Start'] : null;
+        $input['End'] = filter_has_var(INPUT_GET, 'End') ? $_REQUEST['end'] : null;
+        $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = $_REQUEST['gender'];
         var_dump($input);
         var_dump($_SESSION);
@@ -259,7 +259,7 @@ function makeBookingForm(){
                 <input type="radio" name="gender" value="DM"> Dont mind<br>
             </fieldset>
             <label for="Notes">Any Other info</label>
-            <textarea id="Notes" name="notes"></textarea>
+            <textarea id="Notes" name="Notes"></textarea>
             <input type="submit" value="Submit">
 
 
