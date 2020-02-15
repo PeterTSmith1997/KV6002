@@ -237,7 +237,7 @@ function modifyShift(){
 
     }
     catch (Exception $e){
-        echo $e->getTrace();
+        var_dump($e->getTrace());
     }
 
     return array($input, $errors);
