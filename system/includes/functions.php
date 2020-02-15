@@ -222,7 +222,7 @@ function modifyShift(){
 
         if ($input['id'] == null) {
             $input['id'] = 1;
-            $sql = "INSERT INTO `shifts`('ID','ServiceU', 'staff' 'StartDate', 'EndDate', 'StartTime', 'EndTime', 'Preferred gender') 
+            $sql = "INSERT INTO `shifts`('ID','ServiceU', 'staff' 'StartDate', 'EndDate', 'StartTime', 'EndTime', 'Preferredgender') 
 	                          VALUES (:id, :ServiceU, :staff, :StartDate, :EndDate, :StartTime, :EndTime, :Preferredgender)";
 		
             $stmt = $db->prepare($sql);
