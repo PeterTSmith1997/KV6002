@@ -205,6 +205,14 @@ function sendEmail($startTime, $date, $endTime){
     mail($_SESSION['user'],'test','test');
 
 }
+function getID(){
+    $db = getConnection();
+
+    $sql = "SELECT MAX(ID) as ID from shifts";
+    $result = $db->query($sql);
+
+    return $result->fetchObject()->ID;
+}
 function modifyShift(){
 
     $input = array();
@@ -217,16 +225,11 @@ function modifyShift(){
         $input['End'] = filter_has_var(INPUT_GET, 'end') ? $_REQUEST['end'] : null;
         $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = $_REQUEST['gender'];
-        $input['staff'] = 10;
-
-        var_dump($input);
-        var_dump($_SESSION);
-
-
+        $input['staff'] = null;
 
 
         if ($input['id'] == null) {
-            $input['id'] = 1;
+            $input['id'] = getID();
             $sql = "INSERT INTO shifts(ID,ServiceU, staff, StartDate, EndDate, StartTime, EndTime, Preferredgender) 
 	                          VALUES (:id, :ServiceU, :staff, :StartDate, :EndDate, :StartTime, :EndTime, :Preferredgender)";
 		
