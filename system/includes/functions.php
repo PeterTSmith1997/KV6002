@@ -203,7 +203,14 @@ function getShiftsAllocated()
     return $tables;
 }
 function sendEmail($startTime, $date, $endTime){
-    mail($_SESSION['user'],'test','test');
+
+    $message = <<<MESSAGE
+HI \n
+Your shift on $date between $startTime and $endTime has been added to the system. We will contact you shortly when it has been allocated to a member of staff.\n 
+Thanks Evie 3000
+MESSAGE;
+
+    mail($_SESSION['user'],'Conformation of booking',$message);
 
 }
 function getID(){
@@ -245,6 +252,7 @@ function modifyShift(){
 					       ':EndTime'=>$input['End'],
 					       ':Preferredgender'=>$input['gender']));
             sendEmail($input['Start'], $input['date'],$input['End']);
+             $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         } else {
             //update
         }
