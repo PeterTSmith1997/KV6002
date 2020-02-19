@@ -229,7 +229,7 @@ function modifyShift(){
 
 
         if ($input['id'] == null) {
-            $input['id'] = getID();
+            $input['id'] = getID()+1;
             $sql = "INSERT INTO shifts(ID,ServiceU, staff, StartDate, EndDate, StartTime, EndTime, Preferredgender) 
 	                          VALUES (:id, :ServiceU, :staff, :StartDate, :EndDate, :StartTime, :EndTime, :Preferredgender)";
 		
