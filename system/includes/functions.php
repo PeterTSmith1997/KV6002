@@ -91,6 +91,7 @@ function validate_logon(){
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['lastTime'] = time();
                 $_SESSION['ID'] = $input['id'];
+                $_SESSION['type'] = 'su';
 
             }
             else {
