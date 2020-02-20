@@ -21,14 +21,5 @@ echo makeHeader("login");
 
 </form>
 <?php
-$errors = isset($_SESSION['errors'])? $_SESSION['errors']:null;
-/* Checks if there are errors and it is of the expected type of array */
-    if (!empty($errors) && is_array($errors)) {
-        echo "<div class='error'>";
-        /* Loop through the errors and display them on screen */
-        foreach ($errors as $error) {
-            echo "$error \n";
-        }
-    }
-echo makeFooter();
+echo showErrors() . makeFooter();
 ?>

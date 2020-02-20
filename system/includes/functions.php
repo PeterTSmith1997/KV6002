@@ -203,9 +203,9 @@ function getShiftsAllocated()
     return $tables;
 }
 function sendEmail($startTime, $date, $endTime){
-
+    $name = $_SESSION['fName'];
     $message = <<<MESSAGE
-HI \n
+HI $name\n
 Your shift on $date between $startTime and $endTime has been added to the system. We will contact you shortly when it has been allocated to a member of staff.\n 
 Thanks Evie 3000
 MESSAGE;
@@ -293,4 +293,18 @@ function makeBookingForm(){
 FORM;
 
     return $form;
+}
+
+function showErrors(){
+     $string ="";
+    $errors = isset($_SESSION['errors'])? $_SESSION['errors']:null;
+    /* Checks if there are errors and it is of the expected type of array */
+    if (!empty($errors) && is_array($errors)) {
+        $string .= "<div class='error'>";
+        /* Loop through the errors and display them on screen */
+        foreach ($errors as $error) {
+            $string .= "$error \n";
+        }
+    }
+    return  $string;
 }

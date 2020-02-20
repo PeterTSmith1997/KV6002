@@ -8,4 +8,13 @@ require_once 'functions.php';
 
 unset($_SESSION['errors']);  // clear errors
 $id = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
-list($input, $errors) = modifyShift(); 
+list($input, $errors) = modifyShift();
+if ($errors) {
+    store_errors($errors);
+    header("Location: " . $input['url']);
+}
+/* Else redirect the user */
+else {
+
+    header("Location: " . $input['url']);
+}

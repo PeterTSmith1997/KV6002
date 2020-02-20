@@ -13,6 +13,7 @@ if ($_SESSION['type'] !== 'su'){
 </div>";
     echo getShiftsAllocated();
     echo makeBookingForm();
+    echo showErrors();
 }
 
 echo makeFooter();
