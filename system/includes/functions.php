@@ -294,6 +294,16 @@ FORM;
 
     return $form;
 }
+function makeEdidForm($id){
+    $db = getConnection();
+    $sql = "SELECT staff, StartDate, EndDate, StartTime, EndTime, Preferredgender, ServiceU
+            FROM shifts
+            WHERE ID = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute(array(':id' => $id));
+    $recordObj = $stmt->fetchObject();
+    echo $recordObj;
+}
 
 function showErrors(){
      $string ="";
