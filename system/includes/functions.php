@@ -238,8 +238,8 @@ function modifyShift(){
 
         if ($input['id'] == null) {
             $input['id'] = getID()+1;
-            $sql = "INSERT INTO shifts(ID,ServiceU, staff, StartDate, EndDate, StartTime, EndTime, Preferredgender) 
-	                          VALUES (:id, :ServiceU, :staff, :StartDate, :EndDate, :StartTime, :EndTime, :Preferredgender)";
+            $sql = "INSERT INTO shifts(ID,ServiceU, staff, StartDate, EndDate, StartTime, EndTime, Preferredgender, notes) 
+	                          VALUES (:id, :ServiceU, :staff, :StartDate, :EndDate, :StartTime, :EndTime, :Preferredgender, :notes)";
 		
             $stmt = $db->prepare($sql);
 		
@@ -250,7 +250,8 @@ function modifyShift(){
 					       ':EndDate'=>$input['date'],
 					       ':StartTime'=>$input['Start'], 
 					       ':EndTime'=>$input['End'],
-					       ':Preferredgender'=>$input['gender']));
+					       ':Preferredgender'=>$input['gender'],
+                            ':notes'=>$input['Notes']));
             sendEmail($input['Start'], $input['date'],$input['End']);
              $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         } else {
@@ -296,7 +297,7 @@ FORM;
 }
 function makeEdidForm($id){
     $db = getConnection();
-    $sql = "SELECT staff, StartDate, EndDate, StartTime, EndTime, Preferredgender, ServiceU
+    $sql = "SELECT notes, StartDate, EndDate, StartTime, EndTime, Preferredgender, ServiceU
             FROM shifts
             WHERE ID = :id";
     $stmt = $db->prepare($sql);
