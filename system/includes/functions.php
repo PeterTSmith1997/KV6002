@@ -302,7 +302,7 @@ function makeEdidForm($id){
     $stmt = $db->prepare($sql);
     $stmt->execute(array(':id' => $id));
     $recordObj = $stmt->fetchObject();
-    echo $recordObj;
+    var_dump($recordObj);
 }
 
 function showErrors(){
