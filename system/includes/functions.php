@@ -311,24 +311,39 @@ function makeEdidForm($id){
             <label for="Start">Start</label>
             <input type="time" id="Start" name="Start" value="$recordObj->StartTime">
             <label for="end">end</label>
-            <input type="time" id="End" name="end">
+            <input type="time" id="End" name="end" value="$recordObj->EndDate">
             <label for="StartDate">Date</label>
-            <input type="date" name="StartDate" id="StartDate">
+            <input type="date" name="StartDate" id="StartDate value="$recordObj->StartDate">
             <label for="gender">Preferred gender</label>
             <fieldset id="gender">
-                <input type="radio" name="gender" value="M"> Male<br>
-                <input type="radio" name="gender" value="F"> Female<br>
-                <input type="radio" name="gender" value="DM"> Dont mind<br>
-            </fieldset>
-            <label for="Notes">Any Other info</label>
-            <textarea id="Notes" name="Notes"></textarea>
-            <input type="submit" value="Submit">
+FORM;
+    if ($recordObj->Preferredgender=="M"){
+        $form .= "
+                <input type=\"radio\" name=\"gender\" value=\"M\" checked=\"checked\"> Male<br>
+                <input type=\"radio\" name=\"gender\" value=\"F\"> Female<br>
+                <input type=\"radio\" name=\"gender\" value=\"DM\"> Dont mind<br>";
+    }else if ($recordObj->Preferredgender=="F"){
+        $form .= "
+                <input type=\"radio\" name=\"gender\" value=\"M\"> Male<br>
+                <input type=\"radio\" name=\"gender\" value=\"F\" checked=\"checked\"> Female<br>
+                <input type=\"radio\" name=\"gender\" value=\"DM\"> Dont mind<br>";
+    }else{
+        $form .= "
+                <input type=\"radio\" name=\"gender\" value=\"M\" > Male<br>
+                <input type=\"radio\" name=\"gender\" value=\"F\"> Female<br>
+                <input type=\"radio\" name=\"gender\" value=\"DM\" checked=\"checked\"> Dont mind<br>";
+    }
+        $form.= <<<FORM2
+    <label for="Notes">Any Other info</label>
+            <textarea id="Notes" name="Notes">$recordObj->notes</textarea>
+            <input type="submit" value="update">
 
 
         </form>
 	
     </div>
-FORM;
+FORM2;
+
 
     return $form;
 }
