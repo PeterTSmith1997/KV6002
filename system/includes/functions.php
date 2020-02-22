@@ -309,7 +309,7 @@ function makeEdidForm($id){
         <form action='includes/bookingProcess.php' method="get">
 
             <label for="Start">Start</label>
-            <input type="time" id="Start" name="Start" defalut="$recordObj->StartTime">
+            <input type="time" id="Start" name="Start" value="$recordObj->StartTime">
             <label for="end">end</label>
             <input type="time" id="End" name="end">
             <label for="StartDate">Date</label>
