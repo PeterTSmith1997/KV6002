@@ -304,8 +304,34 @@ function makeEdidForm($id){
     $stmt->execute(array(':id' => $id));
     $recordObj = $stmt->fetchObject();
     var_dump($recordObj);
-}
+    $form = <<<FORM
+     <div class="container">
+        <form action='includes/bookingProcess.php' method="get">
 
+            <label for="Start">Start</label>
+            <input type="time" id="Start" name="Start" defalut="$recordObj->StartTime">
+            <label for="end">end</label>
+            <input type="time" id="End" name="end">
+            <label for="StartDate">Date</label>
+            <input type="date" name="StartDate" id="StartDate">
+            <label for="gender">Preferred gender</label>
+            <fieldset id="gender">
+                <input type="radio" name="gender" value="M"> Male<br>
+                <input type="radio" name="gender" value="F"> Female<br>
+                <input type="radio" name="gender" value="DM"> Dont mind<br>
+            </fieldset>
+            <label for="Notes">Any Other info</label>
+            <textarea id="Notes" name="Notes"></textarea>
+            <input type="submit" value="Submit">
+
+
+        </form>
+	
+    </div>
+FORM;
+
+    return $form;
+}
 function showErrors(){
      $string ="";
     $errors = isset($_SESSION['errors'])? $_SESSION['errors']:null;
