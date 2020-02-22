@@ -268,6 +268,8 @@ function modifyShift(){
                 ':EndTime'=>$input['End'],
                 ':Preferredgender'=>$input['gender'],
                 ':notes'=>$input['Notes']));
+
+            $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         }
 
     }
