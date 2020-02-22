@@ -227,11 +227,11 @@ function modifyShift(){
     $errors = array();
     try {
         $db = getConnection();
-        $input['id'] = filter_has_var(INPUT_GET, 'id') ? $_REQUEST['id'] : null;
-        $input['date'] = filter_has_var(INPUT_GET, 'StartDate') ? $_REQUEST['StartDate'] : null;
-        $input['Start'] = filter_has_var(INPUT_GET, 'Start') ? $_REQUEST['Start'] : null;
-        $input['End'] = filter_has_var(INPUT_GET, 'end') ? $_REQUEST['end'] : null;
-        $input['Notes'] = filter_has_var(INPUT_GET, 'Notes') ? $_REQUEST['Notes'] : null;
+        $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
+        $input['date'] = filter_has_var(INPUT_POST, 'StartDate') ? $_REQUEST['StartDate'] : null;
+        $input['Start'] = filter_has_var(INPUT_POST, 'Start') ? $_REQUEST['Start'] : null;
+        $input['End'] = filter_has_var(INPUT_POST, 'end') ? $_REQUEST['end'] : null;
+        $input['Notes'] = filter_has_var(INPUT_POST, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = $_REQUEST['gender'];
         $input['staff'] = null;
 
@@ -255,7 +255,19 @@ function modifyShift(){
             sendEmail($input['Start'], $input['date'],$input['End']);
              $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         } else {
-            //update
+           $updatSQL = "UPDATE shifts SET StartDate=:StartDate, EndDate=:EndDate, StartTime=:StartTime, EndTime=:EndTime,
+                        Preferredgender=:Preferredgender, notes=:notes
+                        WHERE ID = :ID";
+
+            $stmt = $db->prepare($updatSQL);
+
+            $stmt->execute(array(':id'=>$input['id'],
+                ':StartDate'=>$input['date'],
+                ':EndDate'=>$input['date'],
+                ':StartTime'=>$input['Start'],
+                ':EndTime'=>$input['End'],
+                ':Preferredgender'=>$input['gender'],
+                ':notes'=>$input['Notes']));
         }
 
     }
@@ -269,7 +281,7 @@ function modifyShift(){
 function makeBookingForm(){
     $form = <<<FORM
      <div class="container">
-        <form action='includes/bookingProcess.php' method="get">
+        <form action='includes/bookingProcess.php' method="post">
 
             <label for="Start">Start</label>
             <input type="time" id="Start" name="Start">
@@ -305,15 +317,14 @@ function makeEdidForm($id){
     $recordObj = $stmt->fetchObject();
     var_dump($recordObj);
     $form = <<<FORM
+    <p> edit  your shift on $recordObj->StartDate</p>
      <div class="container">
-        <form action='includes/bookingProcess.php' method="get">
-
+        <form action='includes/bookingProcess.php' method="post">
+            <input type="hidden" id="id" name="id" value="$id">
             <label for="Start">Start</label>
             <input type="time" id="Start" name="Start" value="$recordObj->StartTime">
             <label for="end">end</label>
-            <input type="time" id="End" name="end" value="$recordObj->EndDate">
-            <label for="StartDate">Date</label>
-            <input type="date" name="StartDate" id="StartDate value="$recordObj->StartDate">
+            <input type="time" id="End" name="end" value="$recordObj->EndTime">
             <label for="gender">Preferred gender</label>
             <fieldset id="gender">
 FORM;
