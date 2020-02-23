@@ -258,7 +258,7 @@ function modifyShift(){
         } else {
            $updateSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
                         Preferredgender=:Preferredgender, notes=:notes
-                        WHERE id = :ID";
+                        WHERE id = :id";
 
             $stmt = $db->prepare($updateSQL);
 
