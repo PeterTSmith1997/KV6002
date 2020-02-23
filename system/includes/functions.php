@@ -256,11 +256,11 @@ function modifyShift(){
              $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
 
         } else {
-           $updatSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
+           $updateSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
                         Preferredgender=:Preferredgender, notes=:notes
                         WHERE id = :ID";
 
-            $stmt = $db->prepare($updatSQL);
+            $stmt = $db->prepare($updateSQL);
 
             $stmt->execute(array(':id'=>$input['id'],
                 ':StartTime'=>$input['Start'],
@@ -272,7 +272,7 @@ function modifyShift(){
 
     }
     catch (Exception $e){
-        var_dump($e->getTrace());
+        echo $e->getMessage();
     }
 
     return array($input, $errors);
