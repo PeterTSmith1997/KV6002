@@ -371,3 +371,74 @@ function showErrors(){
     }
     return  $string;
 }
+function  passwordForm(){
+    $form = <<<FORM
+ <div class="container">
+        <form action='includes/passwordProcess.php' method="post">
+        
+        <label for="passwordCurrent"><b>Current Password</b></label>
+        <input type="password" placeholder="Enter Password" name="passwordCurrent" required>
+
+        <label for="passwordNew"><b>New Password</b></label>
+        <input type="password" placeholder="Enter Password" name="passwordNew" required>
+
+        <label for="passwordConfirm"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Enter Password" name="passwordConfirm" required>
+        
+            <input type="submit" value="update">
+
+
+        </form>
+	
+    </div>
+
+FORM;
+return $form;
+}
+function modifyPassword()
+{
+
+    $input = array();
+    $errors = array();
+    $input['passwordCurrent'] = filter_has_var(INPUT_GET, 'passwordCurrent') ? $_REQUEST['passwordCurrent'] : null;
+    $input['passwordNew'] = filter_has_var(INPUT_GET, 'passwordNew') ? $_REQUEST['passwordNew'] : null;
+    $input['passwordConfirm'] = filter_has_var(INPUT_GET, 'passwordConfirm') ? $_REQUEST['passwordConfirm'] : null;
+
+    $dbConn = getConnection();
+    /** sql to select the password and first name from the database */
+    if ($_SESSION['type'] == "su") {
+        $sql = "SELECT Password
+                       From ServiceUsers
+                       WHERE ID = :id";
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute(array(':id' => $_SESSION['ID']));
+        $dbConn = null;
+        $recordObj = $stmt->fetchObject();
+        /** If statement to see if a row is returned */
+        if ($recordObj) {
+            $passwordHash = $recordObj->Password;
+            /** Use password verify to make sure the password is correct and store data in the session */
+            if (password_verify($input['passwordCurrent'], $passwordHash)) {
+                if ($input['passwordNew'] == $input['passwordConfirm']) {
+                    $options = [
+                        'cost'=>12,
+                    ];
+                    $input['newHash'] = password_hash($input['passwordNew'], PASSWORD_DEFAULT, $options);
+                    $db = getConnection();
+                    $updateSQL = "UPDATE ServiceUsers SET Password=:pw WHERE ID=id";
+
+                    $stmt = $db->prepare($updateSQL);
+
+                    $stmt->execute(array(':id'=>$_SESSION['ID'],
+                                          ':pw'=>$input['newHash']));
+                } else {
+
+                }
+
+            } else {
+                $errors[] = "unknown user / password";
+            }
+        }
+    }
+    return array($input. $errors);
+}
