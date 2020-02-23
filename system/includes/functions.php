@@ -255,15 +255,13 @@ function modifyShift(){
             sendEmail($input['Start'], $input['date'],$input['End']);
              $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         } else {
-           $updatSQL = "UPDATE shifts SET StartDate=:StartDate, EndDate=:EndDate, StartTime=:StartTime, EndTime=:EndTime,
+           $updatSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
                         Preferredgender=:Preferredgender, notes=:notes
                         WHERE ID = :ID";
 
             $stmt = $db->prepare($updatSQL);
 
             $stmt->execute(array(':id'=>$input['id'],
-                ':StartDate'=>$input['date'],
-                ':EndDate'=>$input['date'],
                 ':StartTime'=>$input['Start'],
                 ':EndTime'=>$input['End'],
                 ':Preferredgender'=>$input['gender'],
