@@ -253,11 +253,12 @@ function modifyShift(){
 					       ':Preferredgender'=>$input['gender'],
                             ':notes'=>$input['Notes']));
             sendEmail($input['Start'], $input['date'],$input['End']);
+             $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
 
         } else {
            $updatSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
                         Preferredgender=:Preferredgender, notes=:notes
-                        WHERE ID = :ID";
+                        WHERE id = :ID";
 
             $stmt = $db->prepare($updatSQL);
 
@@ -266,15 +267,13 @@ function modifyShift(){
                 ':EndTime'=>$input['End'],
                 ':Preferredgender'=>$input['gender'],
                 ':notes'=>$input['Notes']));
-
+            $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         }
 
     }
     catch (Exception $e){
         var_dump($e->getTrace());
     }
-
-    $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
 
     return array($input, $errors);
 }
