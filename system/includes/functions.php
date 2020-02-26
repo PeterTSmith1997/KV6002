@@ -449,7 +449,7 @@ function deleteShift(){
     $errors = array();
     
     $dbConn = getConnection();
-    $id = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
+    $input['id'] = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
     //should probably check that the user is deleting one of their own shifts 
     $sql = "DELETE * FROM shifts WHERE ID=:id";
     $stmt = $dbConn->prepare($sql)->execute(array('id'=>$input['id']));
