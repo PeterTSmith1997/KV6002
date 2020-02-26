@@ -183,6 +183,7 @@ function getShiftsAllocated()
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
+            <td><a href='deleteShift.php?id=$id'>delete</a> </td>
             </tr>";
 
 
@@ -441,4 +442,16 @@ function modifyPassword()
         }
     }
     return array($input. $errors);
+}
+function deleteShift(){
+
+    $input = array();
+    $errors = array();
+    
+    $dbConn = getConnection();
+    $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
+    //should probably check that the user is deleting one of their own shifts 
+    $sql = "DELETE * FROM shifts WHERE ID=:id";
+    $stmt = $dbConn->prepare($sql)->execute(array('id'=>$input['id']));
+    return array($input,$errors);
 }
