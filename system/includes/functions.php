@@ -183,7 +183,8 @@ function getShiftsAllocated()
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
-            <td><a href='delete.php?id=$id'>delete</a> </td>
+            <td><a onclick='javascript:confirmationDelete($(this));return false;' href='delete.php?id=\".$id.\"'>x</a></td><tr>\";
+}
             </tr>";
 
 

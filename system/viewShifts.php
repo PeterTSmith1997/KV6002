@@ -13,5 +13,14 @@ if ($_SESSION['type'] !== 'su'){
 </div>";
     echo getShiftsAllocated(). makeBookingForm(). showErrors();
 }
-
+?>
+<script type="application/javascript">
+    function confirmationDelete(anchor)
+    {
+        var conf = confirm('Are you sure want to delete this record?');
+        if(conf)
+            window.location=anchor.attr("href");
+    }
+</script>
+<?php
 echo makeFooter();
