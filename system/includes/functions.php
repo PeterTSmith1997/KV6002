@@ -164,7 +164,7 @@ function getShiftsAllocated()
         <td scope='col'>Start Time</td>
         <td scope='col'>End Time</td>
         <td scope='col'>Date</td>
-        <td scope='col'>edit</td>
+        <td scope='col' colspan='2'>edit</td>
 </tr>
 ";
 
@@ -183,7 +183,7 @@ function getShiftsAllocated()
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
-            <td><a href='deleteShift.php?id=$id'>delete</a> </td>
+            <td><a href='delete.php?id=$id'>delete</a> </td>
             </tr>";
 
 
@@ -449,7 +449,7 @@ function deleteShift(){
     $errors = array();
     
     $dbConn = getConnection();
-    $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
+    $id = isset($_REQUEST{'id'})?$_REQUEST{'id'} : null;
     //should probably check that the user is deleting one of their own shifts 
     $sql = "DELETE * FROM shifts WHERE ID=:id";
     $stmt = $dbConn->prepare($sql)->execute(array('id'=>$input['id']));
