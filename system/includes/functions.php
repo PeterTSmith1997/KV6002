@@ -184,7 +184,7 @@ function getShiftsAllocated()
             <td>$recordObj->StartDate</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
             ";
-             $unAllocated .= "<td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href='delete.php?id=".$id."'>x</a></td><tr>";
+             $unAllocated .= "<td><a onClick=\"javascript: return confirm('Please confirm deletion of this shift');\" href='delete.php?id=".$id."'>delete</a></td><tr>";
 
 
 
