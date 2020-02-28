@@ -17,8 +17,7 @@ if ($_SESSION['type'] !== 'su'){
     echo makeFooter();
 
 } else{
-    echo "<a href='changePassword.php'> Password stuff</a>";
-    echo "<a href='logout.php'>Logout</a>"; 
+    echo getNav();
     echo "<div class='container'>
  <div  class='col-md3 offset-md-3' id='welcome'> Welcome ". $_SESSION['fName'] ."</div>
 </div>";

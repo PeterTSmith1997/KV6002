@@ -6,6 +6,9 @@ require_once 'config.php';
  * Date: 27/01/2020
  * Time: 19:17
  */
+function getDate(){
+    return date("Y-m-d");
+}
 function makeHeader($title){
     $header="<!DOCTYPE html>
 <html lang=\"en\">
@@ -228,7 +231,7 @@ function modifyShift(){
     $errors = array();
     try {
         $db = getConnection();
-        $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
+
         $input['date'] = filter_has_var(INPUT_POST, 'StartDate') ? $_REQUEST['StartDate'] : null;
         $input['Start'] = filter_has_var(INPUT_POST, 'Start') ? $_REQUEST['Start'] : null;
         $input['End'] = filter_has_var(INPUT_POST, 'end') ? $_REQUEST['end'] : null;
@@ -236,41 +239,55 @@ function modifyShift(){
         $input['gender'] = $_REQUEST['gender'];
         $input['staff'] = null;
 
+        $today = getDate();
 
-        if ($input['id'] == null) {
-            $input['id'] = getID()+1;
-            $sql = "INSERT INTO shifts(ID,ServiceU, staff, StartDate, EndDate, StartTime, EndTime, Preferredgender, notes) 
+        if ($input['date']>$today){
+            $errors[] = "Shift in past";
+        }
+
+        foreach ($input as $item){
+            if ($item == null ){
+                $errors = "Form item is null";
+            }
+        }
+        //request id after null check as this can be null
+        $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
+        if (!$errors) {
+            if ($input['id'] == null) {
+                $input['id'] = getID() + 1;
+                $sql = "INSERT INTO shifts(ID,ServiceU, staff, StartDate, EndDate, StartTime, EndTime, Preferredgender, notes) 
 	                          VALUES (:id, :ServiceU, :staff, :StartDate, :EndDate, :StartTime, :EndTime, :Preferredgender, :notes)";
-		
-            $stmt = $db->prepare($sql);
-		
-                $stmt->execute(array(':id'=>$input['id'],
-					       ':ServiceU'=>$_SESSION['ID'],
-					       ':staff'=>$input['staff'],
-					       ':StartDate'=>$input['date'],
-					       ':EndDate'=>$input['date'],
-					       ':StartTime'=>$input['Start'], 
-					       ':EndTime'=>$input['End'],
-					       ':Preferredgender'=>$input['gender'],
-                            ':notes'=>$input['Notes']));
-            sendEmail($input['Start'], $input['date'],$input['End']);
-             $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
 
-        } else {
-           $updateSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
+                $stmt = $db->prepare($sql);
+
+                $stmt->execute(array(':id' => $input['id'],
+                    ':ServiceU' => $_SESSION['ID'],
+                    ':staff' => $input['staff'],
+                    ':StartDate' => $input['date'],
+                    ':EndDate' => $input['date'],
+                    ':StartTime' => $input['Start'],
+                    ':EndTime' => $input['End'],
+                    ':Preferredgender' => $input['gender'],
+                    ':notes' => $input['Notes']));
+                sendEmail($input['Start'], $input['date'], $input['End']);
+                $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
+
+            } else {
+                $updateSQL = "UPDATE shifts SET StartTime=:StartTime, EndTime=:EndTime,
                         Preferredgender=:Preferredgender, notes=:notes
                         WHERE id = :id";
 
-            $stmt = $db->prepare($updateSQL);
+                $stmt = $db->prepare($updateSQL);
 
-            $stmt->execute(array(':id'=>$input['id'],
-                ':StartTime'=>$input['Start'],
-                ':EndTime'=>$input['End'],
-                ':Preferredgender'=>$input['gender'],
-                ':notes'=>$input['Notes']));
-            $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
+                $stmt->execute(array(':id' => $input['id'],
+                    ':StartTime' => $input['Start'],
+                    ':EndTime' => $input['End'],
+                    ':Preferredgender' => $input['gender'],
+                    ':notes' => $input['Notes']));
+                $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
+            }
+
         }
-
     }
     catch (Exception $e){
         echo $e->getMessage();
@@ -454,4 +471,11 @@ function deleteShift(){
     $sql = "DELETE FROM shifts WHERE ID=:id";
     $stmt = $dbConn->prepare($sql)->execute(array('id'=>$input['id']));
     return array($input,$errors);
+}
+
+function getNav(){
+    $nav = "<nav>
+    <a href='changePassword.php'> Password stuff</a>
+    <a href='logout.php'>Logout</a></nav>";
+    return $nav;
 }
