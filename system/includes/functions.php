@@ -234,11 +234,12 @@ function modifyShift(){
         $input['Start'] = filter_has_var(INPUT_POST, 'Start') ? $_REQUEST['Start'] : null;
         $input['End'] = filter_has_var(INPUT_POST, 'end') ? $_REQUEST['end'] : null;
         $input['Notes'] = filter_has_var(INPUT_POST, 'Notes') ? $_REQUEST['Notes'] : null;
-        $input['gender'] = $_REQUEST['gender'];
-        $input['staff'] = null;
+        $input['gender'] = filter_has_var(INPUT_POST, 'gender') ? $_REQUEST['gender']:null;
+
 
         $today = getDateLocal();
 
+        $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         if ($input['date']>$today){
             $errors[] = "Shift in past";
         }
@@ -250,6 +251,7 @@ function modifyShift(){
         }
         //request id after null check as this can be null
         $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
+        $input['staff'] = null;
         if (!$errors) {
             if ($input['id'] == null) {
                 $input['id'] = getID() + 1;
@@ -421,7 +423,7 @@ function modifyPassword()
     $input['passwordConfirm'] = filter_has_var(INPUT_GET, 'passwordConfirm') ? $_REQUEST['passwordConfirm'] : null;
 
     $dbConn = getConnection();
-    /** sql to select the password and first name from the database */
+    /** sql to select the password*/
     if ($_SESSION['type'] == "su") {
         $sql = "SELECT Password
                        From ServiceUsers
