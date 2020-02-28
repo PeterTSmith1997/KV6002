@@ -6,9 +6,7 @@ require_once 'config.php';
  * Date: 27/01/2020
  * Time: 19:17
  */
-function getDate(){
-    return date("Y-m-d");
-}
+function getDateLocal(){return date("Y-m-d");}
 function makeHeader($title){
     $header="<!DOCTYPE html>
 <html lang=\"en\">
@@ -239,7 +237,7 @@ function modifyShift(){
         $input['gender'] = $_REQUEST['gender'];
         $input['staff'] = null;
 
-        $today = getDate();
+        $today = getDateLocal();
 
         if ($input['date']>$today){
             $errors[] = "Shift in past";
