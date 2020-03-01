@@ -475,11 +475,11 @@ function deleteShift(){
 }
 
 function getNav(){
-    $nav = "<nav class=\"navbar navbar-default\">
+    $nav = "<nav class=\"navbar sticky-top navbar-light bg-light\">
         <ul class=\"nav navbar-nav\">
-            <li><a href='changePassword.php'> Password stuff</a></li>
-            <li><a href='logout.php'>Logout</a></li>
+            <li class='nav-item'><a href='changePassword.php'> Password stuff</a></li>
+            <li class='nav-item'><a href='logout.php'>Logout</a></li>
             </ul>
-      </nav>";
+ </nav>\n ";
     return $nav;
 }
