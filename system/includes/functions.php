@@ -172,9 +172,10 @@ function getShiftsAllocated()
     $db = getConnection();
 
     $sql = "SELECT shifts.id as shift, ServiceU, Staff, StartDate, EndDate,
-            StartTime, EndTime, FirstName, LastName  FROM `shifts` LEFT JOIN Staff ON (shifts.Staff = Staff.ID) WHERE ServiceU =:ServiceU";
+            StartTime, EndTime, FirstName, LastName  FROM `shifts` LEFT JOIN Staff ON (shifts.Staff = Staff.ID) WHERE ServiceU =:ServiceU AND StartDate > :DATE ";
     $stmt = $db->prepare($sql);
-    $stmt->execute(array(':ServiceU' => $_SESSION['ID']));
+    $date=getDateLocal();
+    $stmt->execute(array(':ServiceU' => $_SESSION['ID'], ':date'=>$date));
     while ($recordObj = $stmt->fetchObject()){
      if ($recordObj) {
          if ($recordObj->Staff == null) {
@@ -246,7 +247,7 @@ function modifyShift(){
 
         foreach ($input as $item){
             if ($item == null ){
-                $errors = "Form item is null";
+                $errors[] = "Form item is null";
             }
         }
         //request id after null check as this can be null
@@ -474,8 +475,11 @@ function deleteShift(){
 }
 
 function getNav(){
-    $nav = "<nav>
-    <a href='changePassword.php'> Password stuff</a>
-    <a href='logout.php'>Logout</a></nav>";
+    $nav = "<nav class=\"navbar navbar-default\">
+        <ul class=\"nav navbar-nav\">
+            <li><a href='changePassword.php'> Password stuff</a></li>
+            <li><a href='logout.php'>Logout</a></li>
+            </ul>
+      </nav>";
     return $nav;
 }
