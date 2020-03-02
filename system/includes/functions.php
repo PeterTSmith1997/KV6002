@@ -235,13 +235,13 @@ function modifyShift(){
         $input['Start'] = filter_has_var(INPUT_POST, 'Start') ? $_REQUEST['Start'] : null;
         $input['End'] = filter_has_var(INPUT_POST, 'end') ? $_REQUEST['end'] : null;
         $input['gender'] = filter_has_var(INPUT_POST, 'gender') ? $_REQUEST['gender']:null;
-
-
+        $date = strtotime($input['date']);
+        $formattedDate = date("Y-m-d",$date);
         $today = getDateLocal();
 
-        $errors[]=$today . "  ". $input['date'];
+        $errors[]=$today . "  ". $formattedDate;
         $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
-        if ($input['date']>$today){
+        if ($formattedDate>$today){
             $errors[] = "Shift in past";
         }
 
