@@ -486,12 +486,14 @@ function getNav(){
   <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
     <ul class=\"navbar-nav mr-auto\">
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href="#">Home</a>
+        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/viewShifts.php\">Home</a>
       </li>
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"#\">Change pass</a>
+        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/changePassword.php\">Change pass</a>
       </li>
-      
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"#\">Book Sift</a>
+      </li>
       
     </ul>
     
