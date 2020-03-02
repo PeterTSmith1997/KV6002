@@ -241,7 +241,7 @@ function modifyShift(){
 
         $errors[]=$today . "  ". $formattedDate;
         $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
-        if ($formattedDate>$today){
+        if ($formattedDate<$today){
             $errors[] = "Shift in past";
         }
 
@@ -478,12 +478,12 @@ function deleteShift(){
 function getNav(){
     $nav = "<nav class=\"navbar sticky-top navbar-light bg-light\">
                 <div class='collapse navbar-collapse' id='navbarNav'>
-                    
-</div>
+      
         <ul class='navbar-nav'>
             <li class='nav-item'><a class='nav-link' href='changePassword.php'> Password stuff</a></li>
             <li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>
-            </ul>
+            </ul>              
+</div>
  </nav>\n ";
     return $nav;
 }
