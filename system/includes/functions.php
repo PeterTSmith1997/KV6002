@@ -234,7 +234,6 @@ function modifyShift(){
         $input['date'] = filter_has_var(INPUT_POST, 'StartDate') ? $_REQUEST['StartDate'] : null;
         $input['Start'] = filter_has_var(INPUT_POST, 'Start') ? $_REQUEST['Start'] : null;
         $input['End'] = filter_has_var(INPUT_POST, 'end') ? $_REQUEST['end'] : null;
-        $input['Notes'] = filter_has_var(INPUT_POST, 'Notes') ? $_REQUEST['Notes'] : null;
         $input['gender'] = filter_has_var(INPUT_POST, 'gender') ? $_REQUEST['gender']:null;
 
 
@@ -242,6 +241,7 @@ function modifyShift(){
 
         $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         if ($input['date']>$today){
+            $errors[]=$today . "  ". $input['date'];
             $errors[] = "Shift in past";
         }
 
@@ -253,6 +253,7 @@ function modifyShift(){
         //request id after null check as this can be null
         $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
         $input['staff'] = null;
+        $input['Notes'] = filter_has_var(INPUT_POST, 'Notes') ? $_REQUEST['Notes'] : null;
         if (!$errors) {
             if ($input['id'] == null) {
                 $input['id'] = getID() + 1;
