@@ -382,7 +382,7 @@ function showErrors(){
     $errors = isset($_SESSION['errors'])? $_SESSION['errors']:null;
     /* Checks if there are errors and it is of the expected type of array */
     if (!empty($errors) && is_array($errors)) {
-        $string .= "<div class='error'>";
+        $string .= "<div class='p-3 mb-2 bg-danger text-white'>";
         /* Loop through the errors and display them on screen */
         foreach ($errors as $error) {
             $string .= "$error \n";
@@ -476,9 +476,12 @@ function deleteShift(){
 
 function getNav(){
     $nav = "<nav class=\"navbar sticky-top navbar-light bg-light\">
-        <ul class=\"nav navbar-nav\">
-            <li class='nav-item'><a href='changePassword.php'> Password stuff</a></li>
-            <li class='nav-item'><a href='logout.php'>Logout</a></li>
+                <div class='collapse navbar-collapse' id='navbarNav'>
+                    
+</div>
+        <ul class='navbar-nav'>
+            <li class='nav-item'><a class='nav-link' href='changePassword.php'> Password stuff</a></li>
+            <li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>
             </ul>
  </nav>\n ";
     return $nav;
