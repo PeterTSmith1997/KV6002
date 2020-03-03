@@ -239,7 +239,6 @@ function modifyShift(){
         $formattedDate = date("Y-m-d",$date);
         $today = getDateLocal();
 
-        $errors[]=$today . "  ". $formattedDate;
         $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
         if ($formattedDate<$today){
             $errors[] = "Shift in past";
