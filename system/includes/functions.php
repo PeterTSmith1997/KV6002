@@ -334,7 +334,6 @@ function makeEdidForm($id){
     $stmt = $db->prepare($sql);
     $stmt->execute(array(':id' => $id));
     $recordObj = $stmt->fetchObject();
-    var_dump($recordObj);
     $form = <<<FORM
     <p> edit  your shift on $recordObj->StartDate</p>
      <div class="container">
