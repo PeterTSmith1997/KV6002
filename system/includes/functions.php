@@ -239,7 +239,7 @@ function modifyShift(){
         $formattedDate = date("Y-m-d",$date);
         $today = getDateLocal();
 
-        $input['url'] = 'https://tp.petersweb.me.uk/system/viewShifts.php';
+        $input['url'] = 'https://tp.petersweb.me.uk/system/bookShift.php';
         if ($formattedDate<$today){
             $errors[] = "Shift in past";
         }
@@ -491,7 +491,7 @@ function getNav(){
         <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/changePassword.php\">Change pass</a>
       </li>
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"#\">Book Sift</a>
+        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/bookShift.php\">Book Sift</a>
       </li>
       
     </ul>
