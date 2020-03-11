@@ -258,7 +258,7 @@ function modifyShift(){
         if($input['id'] == null){
             $input['url'] = 'https://tp.petersweb.me.uk/system/bookShift.php';
         }else{
-            $input['url'] = 'https://tp.petersweb.me.uk/system/editshift.php?id='.$input['id'];
+            $input['url'] = 'https://tp.petersweb.me.uk/system/editShift.php?id='.$input['id'];
         }
         if (!$errors) {
             if ($input['id'] == null) {
@@ -346,7 +346,7 @@ function makeEdidForm($id){
      <div class="container">
         <form action='includes/bookingProcess.php' method="post">
             <input type="hidden" id="id" name="id" value="$id">
-            <input type="hidden" name="StartDate" id="StartDate" value="$recordObj->StartDate">
+            <input type="hidden" name="Date" id="Date" value="$recordObj->StartDate">
             <label for="Start">Start</label>
             <input type="time" id="Start" name="Start" value="$recordObj->StartTime">
             <label for="end">end</label>
