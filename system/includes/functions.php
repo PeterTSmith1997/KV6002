@@ -239,7 +239,6 @@ function modifyShift(){
         $formattedDate = date("Y-m-d",$date);
         $today = getDateLocal();
 
-        $input['url'] = 'https://tp.petersweb.me.uk/system/bookShift.php';
         if ($formattedDate<$today){
             $errors[] = "Shift in past";
         }
@@ -256,6 +255,11 @@ function modifyShift(){
         $input['id'] = filter_has_var(INPUT_POST, 'id') ? $_REQUEST['id'] : null;
         $input['staff'] = null;
         $input['Notes'] = filter_has_var(INPUT_POST, 'Notes') ? $_REQUEST['Notes'] : null;
+        if($input['id'] == null){
+            $input['url'] = 'https://tp.petersweb.me.uk/system/bookShift.php';
+        }else{
+            $input['url'] = 'https://tp.peterweb.me.uk/system/editshift.php?id='.$input['id'];
+        }
         if (!$errors) {
             if ($input['id'] == null) {
                 $input['id'] = getID() + 1;
