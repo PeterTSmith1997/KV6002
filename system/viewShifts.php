@@ -18,9 +18,7 @@ if ($_SESSION['type'] !== 'su'){
 
 } else{
     echo getNav();
-    echo "<div class='container'>
- <div  class='col-md3 offset-md-3' id='welcome'> Welcome ". $_SESSION['fName'] ."</div>
-</div>";
+
     echo  getShiftsAllocated(). showErrors();
 }
 
