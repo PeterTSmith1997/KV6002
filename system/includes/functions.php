@@ -346,7 +346,7 @@ function makeEdidForm($id){
      <div class="container">
         <form action='includes/bookingProcess.php' method="post">
             <input type="hidden" id="id" name="id" value="$id">
-            <input type="hidden" name="Date" id="Date" value="$recordObj->StartDate">
+            <input type="hidden" name="StartDate" id="StartDate" value="$recordObj->StartDate">
             <label for="Start">Start</label>
             <input type="time" id="Start" name="Start" value="$recordObj->StartTime">
             <label for="end">end</label>
