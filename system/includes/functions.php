@@ -514,6 +514,9 @@ function getNav(){
       </li>
       <li class=\"nav-item\">
         <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/bookShift.php\">Book Sift</a>
+      </li></li>
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/logout.php\">logout</a>
       </li>
       
     </ul>
