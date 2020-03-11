@@ -13,7 +13,7 @@ if ($_SESSION['type'] !== 'su') {
         echo "Please go back"; // look at auto rediercton
     }
     else{
-        echo getNav().makeEdidForm($id);
+        echo getNav().makeEdidForm($id).showErrors();
     }
 
 }

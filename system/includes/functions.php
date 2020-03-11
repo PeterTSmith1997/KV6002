@@ -150,7 +150,14 @@ function store_errors($errors){
 }
 function getShiftsAllocated()
 {
-    $allocated = "<p>Your allocateted shits</p><table class='table table-hover'> 
+    $allocated = "<div class=\"container\">
+    <div class=\"row justify-content-md-center\">
+      <div class=\"col-md-auto\">
+        <h3>Your allocated shits</h3>
+        </div>
+        </div>
+        </div>
+<table class='table table-hover'> 
         <tr>
         <td scope='col'>Start Time</td>
         <td scope='col'>End Time</td>
