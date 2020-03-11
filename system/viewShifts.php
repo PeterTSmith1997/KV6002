@@ -17,7 +17,6 @@ if ($_SESSION['type'] !== 'su'){
     echo makeFooter();
 
 } else{
-    echo strtotime('+ 1 year', getDateLocal());
     echo getNav();
 
     echo  getShiftsAllocated(). showErrors();
