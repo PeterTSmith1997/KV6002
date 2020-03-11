@@ -243,7 +243,7 @@ function modifyShift(){
         if ($formattedDate<$today){
             $errors[] = "Shift in past";
         }
-        if ($formattedDate>strtotime('+1 year', $today)){
+        if ($formattedDate>strtotime('+ 1 year', $today)){
             $errors[] = "shift too far in future, booking can only be made 1 year in advance";
         }
 
