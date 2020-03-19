@@ -330,10 +330,10 @@ function makeBookingForm(){
             <label for="StartDate">Date</label>
             <input type="date" name="StartDate" id="StartDate" class="form-control">
             <label for="gender">Preferred gender</label>
-            <fieldset id="gender" class="form-check-input">
-                <input type="radio" name="gender" value="M"> Male<br>
-                <input type="radio" name="gender" value="F"> Female<br>
-                <input type="radio" name="gender" value="DM"> Dont mind<br>
+            <fieldset id="gender" class="form-check">
+                <input type="radio" name="gender" class="form-check-input" value="M"> Male<br>
+                <input type="radio" name="gender" class="form-check-input" value="F"> Female<br>
+                <input type="radio" name="gender" class="form-check-input" value="DM"> Don't mind<br>
             </fieldset>
             <label for="Notes">Any Other info</label>
             <textarea id="Notes" name="Notes"></textarea>
