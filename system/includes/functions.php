@@ -153,7 +153,7 @@ function getShiftsAllocated()
     $allocated = "<div class=\"container\">
     <div class=\"row justify-content-md-center\">
       <div class=\"col-md-auto\">
-        <h3>Your allocated shits</h3>
+        <h3>Your allocated shifts</h3>
         </div>
         </div>
         </div>
@@ -168,7 +168,7 @@ function getShiftsAllocated()
     $unAllocated = "<div class=\"container\">
     <div class=\"row justify-content-md-center\">
       <div class=\"col-md-auto\">
-        <h3>Your allocated shits</h3>
+        <h3>Your allocated shifts</h3>
         </div>
         </div>
         </div>
@@ -254,7 +254,7 @@ function modifyShift(){
         $today = getDateLocal();
 
         if ($formattedDate<$today){
-            $errors[] = "Shift in past";
+            $errors[] = "Cannot book a shift with a historical date";
         }
         if ($formattedDate>date('Y-m-d', strtotime('+1 years'))){
             $errors[] = "shift too far in future, booking can only be made 1 year in advance";
@@ -336,7 +336,7 @@ function makeBookingForm(){
                 <input type="radio" name="gender" class="form-check-input" value="F"> Female<br>
                 <input type="radio" name="gender" class="form-check-input" value="DM"> Don't mind<br>
             </fieldset>
-            <label for="Notes">Any Other info</label>
+            <label for="Notes">Any other details</label>
             <textarea id="Notes" name="Notes"></textarea>
             <input type="submit" value="Submit">
 

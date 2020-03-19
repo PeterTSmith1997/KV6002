@@ -19,7 +19,7 @@ if ($_SESSION['type'] !== 'su'){
 } else{
     echo getNav();
 
-    echo  getShiftsAllocated(). showErrors();
+    echo  getShiftsAllocated();
 }
 
 echo makeFooter();      
