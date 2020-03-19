@@ -322,15 +322,15 @@ function makeBookingForm(){
     $form = <<<FORM
      <div class="container">
         <form action='includes/bookingProcess.php' method="post">
-
+        <div class="form-group">
             <label for="Start">Start</label>
-            <input type="time" id="Start" name="Start">
+            <input type="time" id="Start" name="Start" class="form-control">
             <label for="end">end</label>
-            <input type="time" id="End" name="end">
+            <input type="time" id="End" name="end" class="form-control">
             <label for="StartDate">Date</label>
-            <input type="date" name="StartDate" id="StartDate">
+            <input type="date" name="StartDate" id="StartDate" class="form-control">
             <label for="gender">Preferred gender</label>
-            <fieldset id="gender">
+            <fieldset id="gender" class="form-control">
                 <input type="radio" name="gender" value="M"> Male<br>
                 <input type="radio" name="gender" value="F"> Female<br>
                 <input type="radio" name="gender" value="DM"> Dont mind<br>
@@ -465,7 +465,7 @@ function modifyPassword()
                     ];
                     $input['newHash'] = password_hash($input['passwordNew'], PASSWORD_DEFAULT, $options);
                     $db = getConnection();
-                    $updateSQL = "UPDATE ServiceUsers SET Password=:pw WHERE ID=id";
+                    $updateSQL = "UPDATE ServiceUsers SET Password=:pw WHERE ID=:id";
 
                     $stmt = $db->prepare($updateSQL);
 
@@ -510,10 +510,10 @@ function getNav(){
         <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/viewShifts.php\">Home</a>
       </li>
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/changePassword.php\">Change pass</a>
+        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/changePassword.php\">Change password</a>
       </li>
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/bookShift.php\">Book Sift</a>
+        <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/bookShift.php\">Book Shift</a>
       </li></li>
       <li class=\"nav-item\">
         <a class=\"nav-link\" href=\"https://tp.petersweb.me.uk/system/logout.php\">logout</a>
