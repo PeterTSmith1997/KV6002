@@ -259,10 +259,11 @@ function modifyShift(){
         if ($formattedDate>date('Y-m-d', strtotime('+1 years'))){
             $errors[] = "shift too far in future, booking can only be made 1 year in advance";
         }
-
+        $hasError = false;
         foreach ($input as $item){
-            if ($item == null ){
-                $errors[] = "Form item is null";
+            if ($item == null and  !$hasError){
+                $hasError = true;
+                $errors[] = "Please ensure all fields are filled out";
             }
         }
         //request id after null check as this can be null
@@ -325,11 +326,11 @@ function makeBookingForm(){
         <div class="form-group">
             <label for="Start">Start</label>
             <input type="time" id="Start" name="Start" class="form-control">
-            <label for="end">end</label>
+            <label for="end">End</label>
             <input type="time" id="End" name="end" class="form-control">
             <label for="StartDate">Date</label>
             <input type="date" name="StartDate" id="StartDate" class="form-control">
-            <label for="gender">Preferred gender</label>
+            <label for="gender">Preference of gender for support worker</label>
             <fieldset id="gender" class="form-check">
                 <input type="radio" name="gender" class="form-check-input" value="M"> Male<br>
                 <input type="radio" name="gender" class="form-check-input" value="F"> Female<br>
