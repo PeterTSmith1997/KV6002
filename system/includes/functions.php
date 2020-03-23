@@ -168,7 +168,7 @@ function getShiftsAllocated()
     $unAllocated = "<div class=\"container\">
     <div class=\"row justify-content-md-center\">
       <div class=\"col-md-auto\">
-        <h3>Your allocated shifts</h3>
+        <h3>Your un-allocated shifts</h3>
         </div>
         </div>
         </div>
