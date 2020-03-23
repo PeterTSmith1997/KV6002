@@ -200,7 +200,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
-            <td>$recordObj->notes</td>
+            <td class='col-md-2'>$recordObj->notes</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
             ";
              $unAllocated .= "<td><a onClick=\"javascript: return confirm('Please confirm deletion of this shift');\" href='delete.php?id=".$id."'>delete</a></td><tr>";
@@ -213,7 +213,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
-            <td>$recordObj->notes</td>
+            <td class='col-md-2'>$recordObj->notes</td>
             <td>$staff</td>
             </tr>
            ";
