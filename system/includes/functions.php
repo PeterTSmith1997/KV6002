@@ -162,6 +162,7 @@ function getShiftsAllocated()
         <td scope='col'>Start Time</td>
         <td scope='col'>End Time</td>
         <td scope='col'>Date</td>
+        <td scope='col'>Notes</td>
         <td scope='col'>staff</td>
 </tr>
 ";
@@ -179,13 +180,14 @@ function getShiftsAllocated()
         <td scope='col'>Start Time</td>
         <td scope='col'>End Time</td>
         <td scope='col'>Date</td>
+        <td scope='col'>Notes</td>
         <td scope='col' colspan='2'>edit</td>
 </tr>
 ";
 
     $db = getConnection();
 
-    $sql = "SELECT shifts.id as shift, ServiceU, Staff, StartDate, EndDate,
+    $sql = "SELECT shifts.id as shift, notes, ServiceU, Staff, StartDate, EndDate,
             StartTime, EndTime, FirstName, LastName  FROM `shifts` LEFT JOIN Staff ON (shifts.Staff = Staff.ID) WHERE ServiceU =:ServiceU AND StartDate > :today ";
     $stmt = $db->prepare($sql);
     $date=getDateLocal();
@@ -198,6 +200,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
+            <td>$recordObj->notes</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
             ";
              $unAllocated .= "<td><a onClick=\"javascript: return confirm('Please confirm deletion of this shift');\" href='delete.php?id=".$id."'>delete</a></td><tr>";
@@ -210,6 +213,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
+            <td>$recordObj->notes</td>
             <td>$staff</td>
             </tr>
            ";
