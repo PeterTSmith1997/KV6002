@@ -200,7 +200,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
-            <td class='col-md-2'>$recordObj->notes</td>
+            <td class='col-md-1'>$recordObj->notes</td>
             <td><a href='editShift.php?id=$id'>edit</a> </td>
             ";
              $unAllocated .= "<td><a onClick=\"javascript: return confirm('Please confirm deletion of this shift');\" href='delete.php?id=".$id."'>delete</a></td><tr>";
@@ -213,7 +213,7 @@ function getShiftsAllocated()
             <td scope='row'>  $recordObj->StartTime</td>
             <td>$recordObj->EndTime</td>
             <td>$recordObj->StartDate</td>
-            <td class='col-md-2'>$recordObj->notes</td>
+            <td class='col-md-1'>$recordObj->notes</td>
             <td>$staff</td>
             </tr>
            ";
@@ -343,6 +343,7 @@ function makeBookingForm(){
             <label for="Notes">Any other details</label>
             <textarea id="Notes" name="Notes"></textarea>
             <input type="submit" value="Submit">
+            </div>
 
 
         </form>
@@ -364,30 +365,31 @@ function makeEdidForm($id){
     <p> edit  your shift on $recordObj->StartDate</p>
      <div class="container">
         <form action='includes/bookingProcess.php' method="post">
+        <div class="form-group">
             <input type="hidden" id="id" name="id" value="$id">
             <input type="hidden" name="StartDate" id="StartDate" value="$recordObj->StartDate">
             <label for="Start">Start</label>
-            <input type="time" id="Start" name="Start" value="$recordObj->StartTime">
+            <input type="time" id="Start" name="Start" class="form-control" value="$recordObj->StartTime">
             <label for="end">end</label>
-            <input type="time" id="End" name="end" value="$recordObj->EndTime">
+            <input type="time" id="End" name="end" class="form-control" value="$recordObj->EndTime">
             <label for="gender">Preferred gender</label>
-            <fieldset id="gender">
+            <fieldset id="gender" class="form-check">
 FORM;
     if ($recordObj->Preferredgender=="M"){
         $form .= "
-                <input type=\"radio\" name=\"gender\" value=\"M\" checked=\"checked\"> Male<br>
-                <input type=\"radio\" name=\"gender\" value=\"F\"> Female<br>
-                <input type=\"radio\" name=\"gender\" value=\"DM\"> Dont mind<br>";
+                <input type=\"radio\" name=\"gender\" value=\"M\"  class=\"form-check-input\" checked=\"checked\"> Male<br>
+                <input type=\"radio\" name=\"gender\" value=\"F\" class=\"form-check-input\"> Female<br>
+                <input type=\"radio\" name=\"gender\" value=\"DM\" class=\"form-check-input\"> Dont mind<br>";
     }else if ($recordObj->Preferredgender=="F"){
         $form .= "
-                <input type=\"radio\" name=\"gender\" value=\"M\"> Male<br>
-                <input type=\"radio\" name=\"gender\" value=\"F\" checked=\"checked\"> Female<br>
-                <input type=\"radio\" name=\"gender\" value=\"DM\"> Dont mind<br>";
+                <input type=\"radio\" name=\"gender\" value=\"M\" class=\"form-check-input\"> Male<br>
+                <input type=\"radio\" name=\"gender\" value=\"F\" checked=\"checked\" class=\"form-check-input\"> Female<br>
+                <input type=\"radio\" name=\"gender\" value=\"DM\" class=\"form-check-input\"> Dont mind<br>";
     }else{
         $form .= "
-                <input type=\"radio\" name=\"gender\" value=\"M\" > Male<br>
-                <input type=\"radio\" name=\"gender\" value=\"F\"> Female<br>
-                <input type=\"radio\" name=\"gender\" value=\"DM\" checked=\"checked\"> Dont mind<br>";
+                <input type=\"radio\" name=\"gender\" value=\"M\" class=\"form-check-input\"> Male<br>
+                <input type=\"radio\" name=\"gender\" value=\"F\"class=\"form-check-input\"> Female<br>
+                <input type=\"radio\" name=\"gender\" value=\"DM\" checked=\"checked\" class=\"form-check-input\"> Dont mind<br>";
     }
         $form.= <<<FORM2
     <label for="Notes">Any Other info</label>
