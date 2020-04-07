@@ -362,7 +362,13 @@ function makeEdidForm($id){
     $stmt->execute(array(':id' => $id));
     $recordObj = $stmt->fetchObject();
     $form = <<<FORM
-    <p> edit  your shift on $recordObj->StartDate</p>
+    "<div class=\"container\">
+    <div class=\"row justify-content-md-center\">
+      <div class=\"col-md-auto\">
+        <h3>Edit  your shift on $recordObj->StartDate</h3>
+        </div>
+        </div>
+        </div>
      <div class="container">
         <form action='includes/bookingProcess.php' method="post">
         <div class="form-group">
