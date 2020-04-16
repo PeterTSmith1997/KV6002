@@ -326,6 +326,7 @@ function modifyShift(){
 function makeBookingForm(){
     $form = <<<FORM
      <div class="container">
+     	<p>If you put the end time before the start time it will be assumed that the shift ends the following day</p>
         <form action='includes/bookingProcess.php' method="post">
         <div class="form-group">
             <label for="Start">Start</label>
